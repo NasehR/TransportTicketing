@@ -1,0 +1,1 @@
+mcs Model/*.cs View/*.cs Controller/*.cs MainApp.cs

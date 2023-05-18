@@ -1,0 +1,1 @@
+mono MainApp.exe $@
