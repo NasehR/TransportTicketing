@@ -1,5 +1,6 @@
 ﻿using System;
 using TransportTicketing.Model;
+using TransportTicketing.Controller;
 
 namespace TransportTicketing
 {
@@ -13,16 +14,14 @@ namespace TransportTicketing
                 string id = "SR070148614";
                 string name = "Naseh Rizvi";
                 int billerCode = 241513;
-                DateTime dob = new DateTime(2002, 5, 6);
-                Passenger passenger = new Passenger(id, name, billerCode, dob);
-                
-                passenger.Good();
-                Console.WriteLine(passenger.GetCurrentStanding());
+                string dob = "06/05/2002";
+                PassengerController passenger = new PassengerController(id, name, billerCode, dob);
 
-                Console.WriteLine("Change to Debt");
+                passenger.PrintPassengerDetails();
 
-                passenger.Debt();
-                Console.WriteLine(passenger.GetCurrentStanding());
+                passenger.UpdatePassengerStanding("CaNcEl");
+
+                passenger.PrintPassengerDetails();
             }
             catch (Exception ex)
             {

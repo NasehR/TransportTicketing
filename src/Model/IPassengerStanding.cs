@@ -2,7 +2,7 @@
 
 namespace TransportTicketing.Model
 {
-    public abstract class PassengerState
+    public abstract class IPassengerState
     {
         protected Passenger _passenger;
         public abstract string Standing();
@@ -11,9 +11,9 @@ namespace TransportTicketing.Model
         public abstract void Cancel();
     }
 
-    public class GoodStandingState : PassengerState
+    public class GoodStandingState : IPassengerState
     {
-        public GoodStandingState(Passenger passenger) 
+        public GoodStandingState(Passenger passenger)
         {
             _passenger = passenger;
         }
@@ -31,17 +31,17 @@ namespace TransportTicketing.Model
         public override void Debt()
         {
             Console.WriteLine("Good -> Debt");
-            this._passenger.SetState(new DebtState(_passenger));
+            _passenger.SetState(new DebtState(_passenger));
         }
 
         public override void Cancel()
         {
             Console.WriteLine("Good -> Cancel");
-            this._passenger.SetState(new CancelState(_passenger));
+            _passenger.SetState(new CancelState(_passenger));
         }
     }
 
-    public class DebtState : PassengerState
+    public class DebtState : IPassengerState
     {
         public DebtState(Passenger passenger)
         {
@@ -56,7 +56,7 @@ namespace TransportTicketing.Model
         public override void Good()
         {
             Console.WriteLine("Debt -> Good");
-            this._passenger.SetState(new GoodStandingState(_passenger));
+            _passenger.SetState(new GoodStandingState(_passenger));
         }
 
         public override void Debt()
@@ -67,11 +67,11 @@ namespace TransportTicketing.Model
         public override void Cancel()
         {
             Console.WriteLine("Debt -> Cancel");
-            this._passenger.SetState(new CancelState(_passenger));
+            _passenger.SetState(new CancelState(_passenger));
         }
     }
 
-    public class CancelState : PassengerState
+    public class CancelState : IPassengerState
     {
         public CancelState(Passenger passenger)
         {

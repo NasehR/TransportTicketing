@@ -1,10 +1,11 @@
 ﻿using System;
+using Microsoft.VisualBasic;
 
 namespace TransportTicketing.Model
 {
     public class Passenger
     {
-        private PassengerState _currentStanding;
+        private IPassengerState _currentStanding;
         public string Id { get; }
         public string Name { get; set; }
         public DateTime DateOfBirth { get; }
@@ -19,15 +20,25 @@ namespace TransportTicketing.Model
             _currentStanding = new GoodStandingState(this);
         }
 
-        public void SetState(PassengerState passengerState)
+        public override string ToString()
+        {
+            return $"Passenger ID: \t\t{Id} \n" +
+                $"Passenger Name: \t{Name} \n" +
+                $"Date of Birth: \t\t{DateOfBirth.ToString("dd/MM/yyyy")} \n" +
+                $"Biller Code: \t\t{BillerCode} \n" +
+                $"Current Standing: \t{GetCurrentStanding()} \n";
+        }
+
+        public void SetState(IPassengerState passengerState)
         {
             _currentStanding = passengerState;
         }
 
         public string GetCurrentStanding()
         {
-            return $"Passenger {Id}: \t\t{_currentStanding.Standing()}";
+            return _currentStanding.Standing();
         }
+
         public void Good()
         {
             _currentStanding.Good();
