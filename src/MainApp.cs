@@ -13,14 +13,16 @@ namespace TransportTicketing
                 string id = "SR070148614";
                 string name = "Naseh Rizvi";
                 int billerCode = 241513;
-                IPassengerState passengerState = new GoodStandingState();
-                Passenger passenger = new Passenger(id, name, billerCode, passengerState);
+                DateTime dob = new DateTime(2002, 5, 6);
+                Passenger passenger = new Passenger(id, name, billerCode, dob);
+                
                 passenger.Good();
-            
-            
-                IPassengerState passengerState1 = new DebtState();
-                passenger.setState(passengerState1);
+                Console.WriteLine(passenger.GetCurrentStanding());
+
+                Console.WriteLine("Change to Debt");
+
                 passenger.Debt();
+                Console.WriteLine(passenger.GetCurrentStanding());
             }
             catch (Exception ex)
             {

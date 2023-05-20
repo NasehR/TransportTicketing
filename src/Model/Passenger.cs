@@ -4,25 +4,30 @@ namespace TransportTicketing.Model
 {
     public class Passenger
     {
+        private PassengerState _currentStanding;
         public string Id { get; }
         public string Name { get; set; }
+        public DateTime DateOfBirth { get; }
         public int BillerCode { get; }
 
-        private IPassengerState _currentStanding;
-
-        public Passenger(string Id, string Name, int BillerCode, IPassengerState passengerState)
+        public Passenger(string id, string name, int billerCode, DateTime dob)
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.BillerCode = BillerCode;
+            Id = id;
+            Name = name;
+            BillerCode = billerCode;
+            DateOfBirth = dob;
+            _currentStanding = new GoodStandingState(this);
+        }
+
+        public void SetState(PassengerState passengerState)
+        {
             _currentStanding = passengerState;
         }
 
-        public void setState(IPassengerState passengerState)
+        public string GetCurrentStanding()
         {
-            _currentStanding = passengerState;
+            return $"Passenger {Id}: \t\t{_currentStanding.Standing()}";
         }
-
         public void Good()
         {
             _currentStanding.Good();

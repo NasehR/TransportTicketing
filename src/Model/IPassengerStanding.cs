@@ -1,68 +1,99 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TransportTicketing.Model;
 
 namespace TransportTicketing.Model
 {
-    public interface IPassengerState
+    public abstract class PassengerState
     {
-        public void Good(); 
-        public void Debt();
-        public void Cancel();
+        protected Passenger _passenger;
+        public abstract string Standing();
+        public abstract void Good();
+        public abstract void Debt();
+        public abstract void Cancel();
     }
 
-    public class GoodStandingState : IPassengerState
+    public class GoodStandingState : PassengerState
     {
-        public void Good()
+        public GoodStandingState(Passenger passenger) 
+        {
+            _passenger = passenger;
+        }
+
+        public override string Standing()
+        {
+            return "Good Standing";
+        }
+
+        public override void Good()
         {
             Console.WriteLine("Passenger has good standing");
         }
 
-        public void Debt()
+        public override void Debt()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Good -> Debt");
+            this._passenger.SetState(new DebtState(_passenger));
         }
 
-        public void Cancel()
+        public override void Cancel()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Good -> Cancel");
+            this._passenger.SetState(new CancelState(_passenger));
         }
     }
 
-    public class DebtState : IPassengerState
+    public class DebtState : PassengerState
     {
-        public void Good()
+        public DebtState(Passenger passenger)
         {
-            throw new NotImplementedException();
+            _passenger = passenger;
         }
 
-        public void Debt()
+        public override string Standing()
+        {
+            return "In Debt";
+        }
+
+        public override void Good()
+        {
+            Console.WriteLine("Debt -> Good");
+            this._passenger.SetState(new GoodStandingState(_passenger));
+        }
+
+        public override void Debt()
         {
             Console.WriteLine("Passenger is in debt");
         }
 
-        public void Cancel()
+        public override void Cancel()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Debt -> Cancel");
+            this._passenger.SetState(new CancelState(_passenger));
         }
     }
 
-    public class CancelState : IPassengerState
+    public class CancelState : PassengerState
     {
-        public void Good()
+        public CancelState(Passenger passenger)
         {
-            throw new NotImplementedException();
+            _passenger = passenger;
         }
 
-        public void Debt()
+        public override string Standing()
         {
-            throw new NotImplementedException();
+            return "Cancelled";
         }
 
-        public void Cancel()
+        public override void Good()
+        {
+            Console.WriteLine("Cancel -> Good");
+        }
+
+        public override void Debt()
+        {
+            Console.WriteLine("Cancel -> Debt");
+        }
+
+        public override void Cancel()
         {
             Console.WriteLine("Passenger is cancelled");
         }
