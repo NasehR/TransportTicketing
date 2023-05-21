@@ -1,1 +1,1 @@
-mcs Model/*.cs View/*.cs Controller/*.cs MainApp.cs
+mcs MainApp.cs Model/*.cs View/*.cs Controller/*.cs 
