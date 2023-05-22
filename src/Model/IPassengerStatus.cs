@@ -34,6 +34,8 @@ namespace TransportTicketing.Model
         /// <returns>On Transport</returns>
         public string Status()
         {
+            // On bus/train name
+            //_passenger.GetLastTicket().ModeOfTransport();
             return "On Transport";
         }
 

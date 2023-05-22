@@ -69,6 +69,12 @@ namespace TransportTicketing.Model
         {
             _currentStanding.Cancel();
         }
+        
+        /// <summary>
+        /// Method to simulate when a passenger enters transportation mode.
+        /// </summary>
+        /// <param name="transportMode"></param>
+        /// <param name="entryTime"></param>
         /*
         public void EnterTransport(TransportMode transportMode, DateTime entryTime)
         {
@@ -77,12 +83,33 @@ namespace TransportTicketing.Model
             // _currentStatus.On();
         }
         */
-        
+
+        /// <summary>
+        /// Method to simulate when a passenger exits a bus/train
+        /// </summary>
+        /// <param name="exitTime"></param>
         /*
         public void ExitTransport(DateTime exitTime)
         {
             // Ticket ticket = Tickets.Last();
             // _currentStatus.Off();
+        }
+        */
+        
+        /// <summary>
+        /// Method to get the last ticket
+        /// </summary>
+        /// <returns>The last ticket</returns>
+        /// <exception cref="Exception"></exception>
+        /*
+        public Ticket GetLastTicket() 
+        {
+            if (Tickets.Count == 0)
+            {
+                throw new Exception("No tickets were bought.");
+            }
+            
+            return Tickets.Last;
         }
         */
     }
