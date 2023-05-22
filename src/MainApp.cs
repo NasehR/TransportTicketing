@@ -15,6 +15,14 @@ namespace TransportTicketing
                 string name = "Naseh Rizvi";
                 int billerCode = 241513;
                 string dob = "06/05/2002";
+                DateTime Dob = DateTime.Parse(dob);
+                Passenger passenger = new Passenger(id, name, billerCode, Dob);
+                Console.WriteLine(passenger.ToString());
+
+                /*
+                passenger.EnterTransport();
+                Console.WriteLine(passenger.ToString());
+
                 PassengerController passenger = new PassengerController(id, name, billerCode, dob);
 
                 passenger.PrintPassengerDetails();
@@ -22,6 +30,7 @@ namespace TransportTicketing
                 passenger.UpdatePassengerStanding("CaNcEl");
 
                 passenger.PrintPassengerDetails();
+                */
             }
             catch (Exception ex)
             {
