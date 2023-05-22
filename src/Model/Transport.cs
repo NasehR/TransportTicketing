@@ -17,6 +17,7 @@ namespace TransportTicketing.Model
         //public abstract void AddPassengers();
         //Passenger Id: arguement
         //public abstract void RemovePassenger();
+        public abstract void GetCurrentStatus();
     }
 
     public class Bus : Transport
@@ -62,6 +63,11 @@ namespace TransportTicketing.Model
             throw new NotImplementedException();
         }
         */
+
+        public override void GetCurrentStatus()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class Train : Transport
@@ -107,5 +113,10 @@ namespace TransportTicketing.Model
             throw new NotImplementedException();
         }
         */
+
+        public override void GetCurrentStatus()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

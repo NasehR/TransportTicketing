@@ -7,7 +7,7 @@ namespace TransportTicketing.Model
     /// </summary>
     public interface IPassengerStatus
     {
-        string Status();
+        string ToString();
         void On();
         void Off();
     }
@@ -32,7 +32,7 @@ namespace TransportTicketing.Model
         /// Returns the current status of the passenger.
         /// </summary>
         /// <returns>On Transport</returns>
-        public string Status()
+        public override string ToString()
         {
             // On bus/train name
             //_passenger.GetLastTicket().ModeOfTransport();
@@ -77,7 +77,7 @@ namespace TransportTicketing.Model
         /// Returns the current status of the passenger.
         /// </summary>
         /// <returns>Off Transport</returns>
-        public string Status()
+        public override string ToString()
         {
             return "Off Transport";
         }
