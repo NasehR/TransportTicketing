@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TransportTicketing.Model
 {
@@ -41,7 +42,7 @@ namespace TransportTicketing.Model
                 throw new NullReferenceException();
             }
 
-            return Passengers.Count();
+            return Passengers.Count;
         }
 
         public override void AddPassengers(Passenger passenger)
@@ -77,7 +78,7 @@ namespace TransportTicketing.Model
                 throw new NullReferenceException();
             }
 
-            return Stations.Count();
+            return Stations.Count;
         }
 
         public override int GetNumberOfPassengers()
@@ -87,7 +88,7 @@ namespace TransportTicketing.Model
                 throw new NullReferenceException();
             }
 
-            return Passengers.Count();
+            return Passengers.Count;
         }
         
         public override void AddPassengers(Passenger passenger)
