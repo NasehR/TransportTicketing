@@ -12,6 +12,13 @@ namespace TransportTicketing.Model
 
     public class OnTimeState : ITransportStatus
     {
+        protected Transport _transport;
+
+        public OnTimeState(Transport transport)
+        {
+            _transport = transport;
+        }
+
         public override string ToString()
         {
             throw new NotImplementedException();
@@ -35,6 +42,12 @@ namespace TransportTicketing.Model
 
     public class DelayedState : ITransportStatus
     {
+        protected Transport _transport;
+
+        public DelayedState(Transport transport)
+        {
+            _transport = transport;
+        }
         public override string ToString()
         {
             throw new NotImplementedException();
@@ -58,6 +71,13 @@ namespace TransportTicketing.Model
 
     public class CancelledState : ITransportStatus
     {
+        protected Transport _transport;
+
+        public DelayedState(Transport transport)
+        {
+            _transport = transport;
+        }
+
         public override string ToString()
         {
             throw new NotImplementedException();
