@@ -73,7 +73,7 @@ namespace TransportTicketing.Model
     {
         protected Transport _transport;
 
-        public DelayedState(Transport transport)
+        public CancelledState(Transport transport)
         {
             _transport = transport;
         }
