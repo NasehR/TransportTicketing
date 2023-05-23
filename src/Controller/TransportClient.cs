@@ -5,7 +5,7 @@ namespace TransportTicketing.Controller
 {
     public class TransportClient
     {
-        private readonly Transport _transport;
+        private Transport _transport;
 
         public TransportClient(TransportFactory transport, string transportationMode)
         {
@@ -21,20 +21,15 @@ namespace TransportTicketing.Controller
         {
             return _transport.GetNumberOfPassengers();
         }
-        /*
-         * Passenger Id: arguement
-        public void AddPassenger()
+        
+        public void AddPassenger(Passenger passenger)
         {
-            _transport.AddPassengers();
+            _transport.AddPassengers(passenger);
         }
-        */
 
-        /*
-         * Passenger Id: arguement
-        public void RemovePassenger()
+        public void RemovePassenger(Passenger passenger)
         {
-            _transport.RemovePassenger();
+            _transport.RemovePassenger(passenger);
         }
-        */
     }
 }

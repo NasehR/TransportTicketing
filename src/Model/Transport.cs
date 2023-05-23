@@ -1,31 +1,27 @@
 ﻿using System;
-using static System.Collections.Specialized.BitVector32;
 
 namespace TransportTicketing.Model
 {
     public abstract class Transport
     {
-        // Data structure to store the number of stations on the route
-        //protected Dictionary<String, Station> Stations { get; }
-        protected LinkedList<Passenger> Passengers { get; }
-        //protected Dictionary<String, Station> Stations { get; }
+        //private ITransportStatus _transportStatus
+        public LinkedList<Passenger> Passengers { get; set; }
+        public Dictionary<string, Station> Stations { get; set; }
         public abstract int GetNumberOfStations();
         public abstract int GetNumberOfPassengers();
 
+        public abstract void AddPassengers(Passenger passenger);
+        public abstract void RemovePassenger(Passenger passenger);
         //public abstract Station CurrentLocation();
-        //Passenger Id: arguement
-        //public abstract void AddPassengers();
-        //Passenger Id: arguement
-        //public abstract void RemovePassenger();
-        public abstract void GetCurrentStatus();
+        //public abstract string GetCurrentStatus();
     }
 
     public class Bus : Transport
     {
         public Bus()
         {
-            //Stations = new Dictionary<String, Station>();
-            //Passengers = new LinkedList<Passenger>();
+            Stations = new Dictionary<string, Station>();
+            Passengers = new LinkedList<Passenger>();
         }
 
         public override int GetNumberOfStations()
@@ -48,34 +44,30 @@ namespace TransportTicketing.Model
             return Passengers.Count();
         }
 
-        /*
-        * Passenger Id: arguement
-        public override void AddPassengers()
+        public override void AddPassengers(Passenger passenger)
         {
             throw new NotImplementedException();
         }
-        */
 
-        /*
-         * Passenger Id: arguement
-        public override void RemovePassenger()
+        public override void RemovePassenger(Passenger passenger)
         {
             throw new NotImplementedException();
         }
-        */
 
+        /*
         public override void GetCurrentStatus()
         {
             throw new NotImplementedException();
         }
+        */
     }
 
     public class Train : Transport
     {
         public Train()
         {
-            //Stations = new Dictionary<String, Station>();
-            //Passengers = new LinkedList<Passenger>();
+            Stations = new Dictionary<String, Station>();
+            Passengers = new LinkedList<Passenger>();
         }
 
         public override int GetNumberOfStations()
@@ -97,26 +89,23 @@ namespace TransportTicketing.Model
 
             return Passengers.Count();
         }
-
-        /*
-         * Passenger Id: arguement
-        public override void AddPassengers()
+        
+        public override void AddPassengers(Passenger passenger)
         {
             throw new NotImplementedException();
         }
-        */
-
-        /*
-         * Passenger Id: arguement
-        public override void RemovePassenger()
+        
+        public override void RemovePassenger(Passenger passenger)
         {
             throw new NotImplementedException();
         }
-        */
 
+        /*
         public override void GetCurrentStatus()
         {
             throw new NotImplementedException();
         }
+        */
+  
     }
 }
