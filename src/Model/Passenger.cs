@@ -52,7 +52,7 @@ namespace TransportTicketing.Model
 
         public string GetCurrentStatus()
         {
-            return _currentStatus.Status();
+            return _currentStatus.ToString();
         }
 
         public void Good()
