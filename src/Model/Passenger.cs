@@ -29,7 +29,7 @@ namespace TransportTicketing.Model
         {
             return $"Passenger ID: \t\t{Id} \n" +
                 $"Passenger Name: \t{Name} \n" +
-                $"Date of Birth: \t\t{DateOfBirth.ToString("dd/MM/yyyy")} \n" +
+                $"Date of Birth: \t\t{DateOfBirth:dd/MM/yyyy} \n" +
                 $"Biller Code: \t\t{BillerCode} \n" +
                 $"Current Standing: \t{GetCurrentStanding()} \n" + 
                 $"Current Status: \t{GetCurrentStatus()}";

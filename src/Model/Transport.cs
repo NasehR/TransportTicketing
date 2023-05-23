@@ -6,8 +6,8 @@ namespace TransportTicketing.Model
     public abstract class Transport
     {
         //private ITransportStatus _transportStatus
-        public LinkedList<Passenger> Passengers { get; set; }
-        public Dictionary<string, Station> Stations { get; set; }
+        public LinkedList<Passenger>? Passengers { get; set; }
+        public Dictionary<string, Station>? Stations { get; set; }
         public abstract int GetNumberOfStations();
         public abstract int GetNumberOfPassengers();
 
