@@ -5,16 +5,18 @@ namespace TransportTicketing.Model
 {
     public abstract class Transport
     {
-        //private ITransportStatus _transportStatus
+        public ITransportStatus? TransportStatus;
         public LinkedList<Passenger>? Passengers { get; set; }
         public Dictionary<string, Station>? Stations { get; set; }
+
         public abstract int GetNumberOfStations();
         public abstract int GetNumberOfPassengers();
 
         public abstract void AddPassengers(Passenger passenger);
         public abstract void RemovePassenger(Passenger passenger);
+        public abstract void AddStation(Station station);
+        public abstract string GetCurrentStatus();
         //public abstract Station CurrentLocation();
-        //public abstract string GetCurrentStatus();
     }
 
     public class Bus : Transport
@@ -23,6 +25,7 @@ namespace TransportTicketing.Model
         {
             Stations = new Dictionary<string, Station>();
             Passengers = new LinkedList<Passenger>();
+            TransportStatus = new OnTimeState(this);
         }
 
         public override int GetNumberOfStations()
@@ -55,12 +58,15 @@ namespace TransportTicketing.Model
             throw new NotImplementedException();
         }
 
-        /*
-        public override void GetCurrentStatus()
+        public override void AddStation(Station station)
+        {
+            Stations?.Add(station.Name, station);
+        }
+
+        public override string GetCurrentStatus()
         {
             throw new NotImplementedException();
         }
-        */
     }
 
     public class Train : Transport
@@ -69,6 +75,7 @@ namespace TransportTicketing.Model
         {
             Stations = new Dictionary<String, Station>();
             Passengers = new LinkedList<Passenger>();
+            TransportStatus = new OnTimeState(this);
         }
 
         public override int GetNumberOfStations()
@@ -101,12 +108,14 @@ namespace TransportTicketing.Model
             throw new NotImplementedException();
         }
 
-        /*
-        public override void GetCurrentStatus()
+        public override void AddStation(Station station)
+        {
+            Stations?.Add(station.Name, station);
+        }
+
+        public override string GetCurrentStatus()
         {
             throw new NotImplementedException();
-        }
-        */
-  
+        }  
     }
 }

@@ -31,5 +31,10 @@ namespace TransportTicketing.Controller
         {
             _transport.RemovePassenger(passenger);
         }
+    
+        public void AddStation(Station station)
+        {
+            _transport.AddStation(station);
+        }
     }
 }
