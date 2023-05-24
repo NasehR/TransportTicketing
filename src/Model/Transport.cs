@@ -6,7 +6,7 @@ namespace TransportTicketing.Model
     public abstract class Transport
     {
         public ITransportStatus? TransportStatus;
-        public LinkedList<Passenger>? Passengers { get; set; }
+        public List<Passenger>? Passengers { get; set; }
         public Dictionary<string, Station>? Stations { get; set; }
 
         public abstract int GetNumberOfStations();
@@ -16,6 +16,7 @@ namespace TransportTicketing.Model
         public abstract void RemovePassenger(Passenger passenger);
         public abstract void AddStation(Station station);
         public abstract string GetCurrentStatus();
+        public abstract List<Passenger> GetCurrentPassengers();
         //public abstract Station CurrentLocation();
     }
 
@@ -24,7 +25,7 @@ namespace TransportTicketing.Model
         public Bus()
         {
             Stations = new Dictionary<string, Station>();
-            Passengers = new LinkedList<Passenger>();
+            Passengers = new List<Passenger>();
             TransportStatus = new OnTimeState(this);
         }
 
@@ -64,6 +65,11 @@ namespace TransportTicketing.Model
         }
 
         public override string GetCurrentStatus()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<Passenger> GetCurrentPassengers()
         {
             throw new NotImplementedException();
         }
@@ -74,7 +80,7 @@ namespace TransportTicketing.Model
         public Train()
         {
             Stations = new Dictionary<String, Station>();
-            Passengers = new LinkedList<Passenger>();
+            Passengers = new List<Passenger>();
             TransportStatus = new OnTimeState(this);
         }
 
@@ -116,6 +122,11 @@ namespace TransportTicketing.Model
         public override string GetCurrentStatus()
         {
             throw new NotImplementedException();
-        }  
+        }
+
+        public override List<Passenger> GetCurrentPassengers()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace TransportTicketing.src.Controller
             {
                 using (StreamReader reader = new StreamReader(filePath))
                 {
-                    string line;
+                    string? line;
                     while ((line = reader.ReadLine()) != null)
                     {
                         string[] data = line.Split(',');

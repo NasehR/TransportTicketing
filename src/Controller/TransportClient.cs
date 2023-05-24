@@ -5,7 +5,7 @@ namespace TransportTicketing.Controller
 {
     public class TransportClient
     {
-        private Transport _transport;
+        private readonly Transport _transport;
 
         public TransportClient(TransportFactory transport, string transportationMode)
         {
@@ -35,6 +35,11 @@ namespace TransportTicketing.Controller
         public void AddStation(Station station)
         {
             _transport.AddStation(station);
+        }
+
+        public List<Passenger> GetCurrrentPassengers()
+        {
+            throw new NotImplementedException();
         }
     }
 }

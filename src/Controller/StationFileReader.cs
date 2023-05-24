@@ -9,13 +9,14 @@ namespace TransportTicketing.Controller
     {
         public List<Station> ReadStationsFromCSV(string filePath)
         {
-            List<Station> Stations = new List<Station>();
+            List<Station> Stations = new();
 
             try
             {
-                using (StreamReader reader = new StreamReader(filePath))
+                using (StreamReader reader = new(filePath))
                 {
-                    string line;
+                    string? line;
+
                     while ((line = reader.ReadLine()) != null)
                     {
                         string[] data = line.Split(',');
@@ -23,7 +24,7 @@ namespace TransportTicketing.Controller
                         if (data.Length >= 1)
                         {
                             string stationName = data[0];
-                            Station station = new Station(stationName);
+                            Station station = new(stationName);
                             
                             if (!(Stations.Contains(station)))
                             {
