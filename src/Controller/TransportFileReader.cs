@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using TransportTicketing.Controller;
@@ -11,15 +12,28 @@ namespace TransportTicketing.src.Controller
 {
     public class TransportFileReader
     {
-        public List<TransportClient> ReadTransportsFromCSV(string filePath, List<Station> stations)
+        private readonly string _fileName;
+        private readonly List<Station> _stations;
+
+        public TransportFileReader(string fileName, List<Station> stations)
+        {
+            _fileName = fileName;
+            _stations = stations;
+        }
+
+        public List<TransportClient> ReadTransportsFromCSV()
         {
             List<TransportClient> transports = new List<TransportClient>();
 
             try
             {
-                using (StreamReader reader = new StreamReader(filePath))
+                using (StreamReader reader = new StreamReader(_fileName))
                 {
                     string? line;
+                    TransportFactory transport;
+                    TransportClient transportMode;
+                    Station currentStation;
+
                     while ((line = reader.ReadLine()) != null)
                     {
                         string[] data = line.Split(',');
@@ -29,18 +43,19 @@ namespace TransportTicketing.src.Controller
                             string transportName = data[0];
                             string[] stationNames = data[1..];
 
-                            TransportFactory transport = new TransportFactory();
-                            TransportClient transportMode = new TransportClient(transport, transportName);
+                            transport = new TransportFactory(transportName);
+                            transportMode = new TransportClient(transport);
 
                             foreach (string stationName in stationNames)
                             {
-                                Station station = stations.Find(stationName);
-                                
-                                if (station != null)
+                                currentStation = new(stationName);
+
+                                if (_stations.Contains(currentStation))
                                 {
-                                    transportMode.AddStation(station);
+                                    transportMode.AddStation(currentStation);
                                 }
                             }
+
                             transports.Add(transportMode);
                         }
                     }

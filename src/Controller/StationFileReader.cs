@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using TransportTicketing.Model;
 
@@ -7,15 +8,22 @@ namespace TransportTicketing.Controller
 {
     public class StationFileReader
     {
-        public List<Station> ReadStationsFromCSV(string filePath)
+        private readonly string _fileName;
+        public StationFileReader(string fileName) 
+        {
+            _fileName = fileName;
+        }
+
+        public List<Station> ReadStationsFromCSV()
         {
             List<Station> Stations = new();
 
             try
             {
-                using (StreamReader reader = new(filePath))
+                using (StreamReader reader = new(_fileName))
                 {
                     string? line;
+                    Station station;
 
                     while ((line = reader.ReadLine()) != null)
                     {
@@ -24,7 +32,7 @@ namespace TransportTicketing.Controller
                         if (data.Length >= 1)
                         {
                             string stationName = data[0];
-                            Station station = new(stationName);
+                            station = new(stationName);
                             
                             if (!(Stations.Contains(station)))
                             {

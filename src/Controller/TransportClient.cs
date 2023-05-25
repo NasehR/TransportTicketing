@@ -7,9 +7,10 @@ namespace TransportTicketing.Controller
     {
         private readonly Transport _transport;
 
-        public TransportClient(TransportFactory transport, string transportationMode)
+        public TransportClient(TransportFactory transport)
         {
-            _transport = transport.CreateTransportation(transportationMode);
+
+            _transport = transport.CreateTransportation();
         }
 
         public int GetNumberOfStations()

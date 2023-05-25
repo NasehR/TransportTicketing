@@ -5,9 +5,15 @@ namespace TransportTicketing.Controller
 {
     public class TransportFactory
     {
-        public Transport CreateTransportation(string transportationMode)
+        private readonly string _transportationMode;
+        public TransportFactory(string transportationMode) 
         {
-            switch (transportationMode.ToLower())
+            _transportationMode = transportationMode;
+        }
+
+        public Transport CreateTransportation()
+        {
+            switch (_transportationMode.ToLower())
             {
                 case "bus":
                     return new Bus();
