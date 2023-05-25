@@ -1,9 +1,9 @@
 ﻿using System;
-using Microsoft.VisualBasic;
+using TransportTicketing.Controller;
 
 namespace TransportTicketing.Model
 {
-    public class Passenger
+    public class Passenger : ITransportObserver
     {
         private IPassengerState _currentStanding;
         private IPassengerStatus _currentStatus;
@@ -69,7 +69,13 @@ namespace TransportTicketing.Model
         {
             _currentStanding.Cancel();
         }
-        
+
+        public void Notify()
+        {
+            throw new NotImplementedException();
+            //Notify passengers that the transport is either cancelled or delayed
+        }
+
         /// <summary>
         /// Method to simulate when a passenger enters transportation mode.
         /// </summary>
@@ -95,7 +101,7 @@ namespace TransportTicketing.Model
             // _currentStatus.Off();
         }
         */
-        
+
         /// <summary>
         /// Method to get the last ticket
         /// </summary>
