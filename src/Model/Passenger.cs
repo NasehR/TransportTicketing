@@ -3,7 +3,7 @@ using TransportTicketing.Controller;
 
 namespace TransportTicketing.Model
 {
-    public class Passenger : ITransportObserver
+    public class Passenger
     {
         private IPassengerState _currentStanding;
         private IPassengerStatus _currentStatus;
@@ -68,12 +68,6 @@ namespace TransportTicketing.Model
         public void Cancel()
         {
             _currentStanding.Cancel();
-        }
-
-        public void Notify()
-        {
-            throw new NotImplementedException();
-            //Notify passengers that the transport is either cancelled or delayed
         }
 
         /// <summary>

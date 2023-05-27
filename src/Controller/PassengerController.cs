@@ -7,7 +7,7 @@ namespace TransportTicketing.Controller
     /// <summary>
     /// The class is responsible for passenger related operations
     /// </summary>
-    public class PassengerController
+    public class PassengerController : ITransportObserver
     {
         private Passenger _passenger;
 
@@ -78,6 +78,12 @@ namespace TransportTicketing.Controller
             /*
             _passsenger.Ticket.SetLeaveTime() 
              */
+        }
+
+        public void Notify()
+        {
+            // notify the passenger that the bus/tran is delayed/canceled
+            throw new NotImplementedException();
         }
     }
 }
