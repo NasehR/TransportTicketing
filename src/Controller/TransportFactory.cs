@@ -17,7 +17,7 @@ namespace TransportTicketing.Controller
             {
                 case "bus":
                     return new Bus();
-                case "Train":
+                case "train":
                     return new Train();
                 default:
                     throw new ArgumentException("Invalid transportation mode.");
