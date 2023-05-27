@@ -22,7 +22,7 @@ namespace TransportTicketing.Controller
         {
             return _transport.GetNumberOfPassengers();
         }
-        
+
         public void AddPassenger(PassengerController passenger)
         {
             _transport.AddPassengers(passenger);
@@ -32,7 +32,7 @@ namespace TransportTicketing.Controller
         {
             _transport.RemovePassenger(passenger);
         }
-    
+
         public void AddStation(Station station)
         {
             _transport.AddStation(station);
@@ -57,9 +57,9 @@ namespace TransportTicketing.Controller
             }
         }
 
-        public List<Passenger> GetCurrentPassengers()
+        public List<PassengerController> GetCurrentPassengers()
         {
-            throw new NotImplementedException();
+            return _transport.GetCurrentPassengers();
         }
     }
 }

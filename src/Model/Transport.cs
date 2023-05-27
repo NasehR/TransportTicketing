@@ -10,9 +10,9 @@ namespace TransportTicketing.Model
         public List<PassengerController>? Passengers { get; set; }
         public Dictionary<string, Station>? Stations { get; set; }
 
+        public abstract void SetStatus(ITransportStatus transportStatus);
         public abstract int GetNumberOfStations();
         public abstract int GetNumberOfPassengers();
-
         public abstract void AddPassengers(PassengerController passenger);
         public abstract void RemovePassenger(PassengerController passenger);
         public abstract void AddStation(Station station);
@@ -20,9 +20,7 @@ namespace TransportTicketing.Model
         public abstract void OnTime();
         public abstract void Delayed();
         public abstract void Cancelled();
-
         public abstract List<PassengerController> GetCurrentPassengers();
-        //public abstract Station CurrentLocation();
     }
 
     public class Bus : Transport
@@ -34,10 +32,21 @@ namespace TransportTicketing.Model
             TransportStatus = new OnTimeState(this);
         }
 
+        public override string ToString()
+        {
+            return "Bus";
+        }
+
+        public override void SetStatus(ITransportStatus transportStatus)
+        {
+            TransportStatus = transportStatus;
+        }
+
         public override int GetNumberOfStations()
         {
             if (Stations == null)
             {
+                // custom exception
                 throw new NullReferenceException();
             }
 
@@ -48,6 +57,7 @@ namespace TransportTicketing.Model
         {
             if (Passengers == null)
             {
+                // custom exception
                 throw new NullReferenceException();
             }
 
@@ -71,7 +81,7 @@ namespace TransportTicketing.Model
 
         public override string GetCurrentStatus()
         {
-            throw new NotImplementedException();
+            return TransportStatus.ToString();
         }
 
         public override void OnTime()
@@ -91,9 +101,10 @@ namespace TransportTicketing.Model
 
         public override List<PassengerController> GetCurrentPassengers()
         {
-            if (Passengers == null) 
-            { 
-                throw new NullReferenceException(); 
+            if (Passengers == null)
+            {
+                // custom exception
+                throw new NullReferenceException();
             }
 
             return Passengers;
@@ -109,10 +120,21 @@ namespace TransportTicketing.Model
             TransportStatus = new OnTimeState(this);
         }
 
+        public override string ToString()
+        {
+            return "Train";
+        }
+
+        public override void SetStatus(ITransportStatus transportStatus)
+        {
+            TransportStatus = transportStatus;
+        }
+
         public override int GetNumberOfStations()
         {
             if (Stations == null)
             {
+                // custom exception
                 throw new NullReferenceException();
             }
 
@@ -123,6 +145,7 @@ namespace TransportTicketing.Model
         {
             if (Passengers == null)
             {
+                // custom exception
                 throw new NullReferenceException();
             }
 
@@ -146,7 +169,7 @@ namespace TransportTicketing.Model
 
         public override string GetCurrentStatus()
         {
-            throw new NotImplementedException();
+            return TransportStatus.ToString();
         }
 
         public override void OnTime()
@@ -168,6 +191,7 @@ namespace TransportTicketing.Model
         {
             if (Passengers == null)
             {
+                // custom exception
                 throw new NullReferenceException();
             }
 

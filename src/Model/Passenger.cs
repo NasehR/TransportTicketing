@@ -111,6 +111,7 @@ namespace TransportTicketing.Model
         {
             if (Tickets.Count == 0)
             {
+                // custom exception
                 throw new Exception("No tickets were bought.");
             }
             

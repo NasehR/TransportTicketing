@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace TransportTicketing.Model
 {
@@ -21,22 +22,22 @@ namespace TransportTicketing.Model
 
         public override string ToString()
         {
-            throw new NotImplementedException();
-        }
-
-        public void Delayed()
-        {
-            throw new NotImplementedException();
+            return $"{_transport.ToString} is on time";
         }
 
         public void OnTime()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("The transport is on time");
+        }
+
+        public void Delayed()
+        {
+            _transport.SetStatus(new DelayedState(_transport));
         }
 
         public void Cancelled()
         {
-            throw new NotImplementedException();
+            _transport.SetStatus(new CancelledState(_transport));
         }
     }
 
@@ -48,24 +49,25 @@ namespace TransportTicketing.Model
         {
             _transport = transport;
         }
+        
         public override string ToString()
         {
-            throw new NotImplementedException();
-        }
-
-        public void Delayed()
-        {
-            throw new NotImplementedException();
+            return $"{_transport.ToString} is delayed";
         }
 
         public void OnTime()
         {
-            throw new NotImplementedException();
+            _transport.SetStatus(new OnTimeState(_transport));
         }
-        
+
+        public void Delayed()
+        {
+            Console.WriteLine("The transport is already delayed.");
+        }
+
         public void Cancelled()
         {
-            throw new NotImplementedException();
+            _transport.SetStatus(new CancelledState(_transport));
         }
     }
 
@@ -80,22 +82,22 @@ namespace TransportTicketing.Model
 
         public override string ToString()
         {
-            throw new NotImplementedException();
-        }
-
-        public void Delayed()
-        {
-            throw new NotImplementedException();
+            return $"{_transport.ToString} is cancelled";
         }
 
         public void OnTime()
         {
-            throw new NotImplementedException();
+            _transport.SetStatus(new OnTimeState(_transport));
         }
         
+        public void Delayed()
+        {
+            _transport.SetStatus(new DelayedState(_transport));
+        }
+
         public void Cancelled()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("The transport is already cancelled");
         }
     }
 }
