@@ -1,22 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using TransportTicketing.Controller;
 
 namespace TransportTicketing.Model
 {
     public abstract class Transport
     {
         public ITransportStatus? TransportStatus;
-        public List<Passenger>? Passengers { get; set; }
+        public List<PassengerController>? Passengers { get; set; }
         public Dictionary<string, Station>? Stations { get; set; }
 
         public abstract int GetNumberOfStations();
         public abstract int GetNumberOfPassengers();
 
-        public abstract void AddPassengers(Passenger passenger);
-        public abstract void RemovePassenger(Passenger passenger);
+        public abstract void AddPassengers(PassengerController passenger);
+        public abstract void RemovePassenger(PassengerController passenger);
         public abstract void AddStation(Station station);
         public abstract string GetCurrentStatus();
-        public abstract List<Passenger> GetCurrentPassengers();
+        public abstract void OnTime();
+        public abstract void Delayed();
+        public abstract void Cancelled();
+
+        public abstract List<PassengerController> GetCurrentPassengers();
         //public abstract Station CurrentLocation();
     }
 
@@ -25,7 +30,7 @@ namespace TransportTicketing.Model
         public Bus()
         {
             Stations = new Dictionary<string, Station>();
-            Passengers = new List<Passenger>();
+            Passengers = new List<PassengerController>();
             TransportStatus = new OnTimeState(this);
         }
 
@@ -49,14 +54,14 @@ namespace TransportTicketing.Model
             return Passengers.Count;
         }
 
-        public override void AddPassengers(Passenger passenger)
+        public override void AddPassengers(PassengerController passenger)
         {
-            throw new NotImplementedException();
+            Passengers?.Add(passenger);
         }
 
-        public override void RemovePassenger(Passenger passenger)
+        public override void RemovePassenger(PassengerController passenger)
         {
-            throw new NotImplementedException();
+            Passengers?.Remove(passenger);
         }
 
         public override void AddStation(Station station)
@@ -69,9 +74,29 @@ namespace TransportTicketing.Model
             throw new NotImplementedException();
         }
 
-        public override List<Passenger> GetCurrentPassengers()
+        public override void OnTime()
         {
-            throw new NotImplementedException();
+            TransportStatus?.OnTime();
+        }
+
+        public override void Delayed()
+        {
+            TransportStatus?.Delayed();
+        }
+
+        public override void Cancelled()
+        {
+            TransportStatus?.Cancelled();
+        }
+
+        public override List<PassengerController> GetCurrentPassengers()
+        {
+            if (Passengers == null) 
+            { 
+                throw new NullReferenceException(); 
+            }
+
+            return Passengers;
         }
     }
 
@@ -80,7 +105,7 @@ namespace TransportTicketing.Model
         public Train()
         {
             Stations = new Dictionary<String, Station>();
-            Passengers = new List<Passenger>();
+            Passengers = new List<PassengerController>();
             TransportStatus = new OnTimeState(this);
         }
 
@@ -104,14 +129,14 @@ namespace TransportTicketing.Model
             return Passengers.Count;
         }
         
-        public override void AddPassengers(Passenger passenger)
+        public override void AddPassengers(PassengerController passenger)
         {
-            throw new NotImplementedException();
+            Passengers?.Add(passenger);
         }
-        
-        public override void RemovePassenger(Passenger passenger)
+
+        public override void RemovePassenger(PassengerController passenger)
         {
-            throw new NotImplementedException();
+            Passengers?.Remove(passenger);
         }
 
         public override void AddStation(Station station)
@@ -124,9 +149,29 @@ namespace TransportTicketing.Model
             throw new NotImplementedException();
         }
 
-        public override List<Passenger> GetCurrentPassengers()
+        public override void OnTime()
         {
-            throw new NotImplementedException();
+            TransportStatus?.OnTime();
+        }
+
+        public override void Delayed()
+        {
+            TransportStatus?.Delayed();
+        }
+
+        public override void Cancelled()
+        {
+            TransportStatus?.Cancelled();
+        }
+
+        public override List<PassengerController> GetCurrentPassengers()
+        {
+            if (Passengers == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            return Passengers;
         }
     }
 }

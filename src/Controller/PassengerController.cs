@@ -80,10 +80,10 @@ namespace TransportTicketing.Controller
              */
         }
 
-        public void Notify()
+        public void NotifyPassenger()
         {
-            // notify the passenger that the bus/tran is delayed/canceled
-            throw new NotImplementedException();
+            // notify the passenger that the bus/train is delayed/canceled
+            _passenger.Notify();
         }
     }
 }

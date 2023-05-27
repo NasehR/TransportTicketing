@@ -70,6 +70,11 @@ namespace TransportTicketing.Model
             _currentStanding.Cancel();
         }
 
+        public void Notify()
+        {
+            Console.WriteLine("Your Transport is late/cancelled");
+        }
+
         /// <summary>
         /// Method to simulate when a passenger enters transportation mode.
         /// </summary>

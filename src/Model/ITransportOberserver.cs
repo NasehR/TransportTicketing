@@ -4,6 +4,6 @@ namespace TransportTicketing.Model
 {
     public interface ITransportObserver
     {
-        void Notify();
+        void NotifyPassenger();
     }
 }

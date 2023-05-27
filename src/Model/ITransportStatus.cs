@@ -5,8 +5,8 @@ namespace TransportTicketing.Model
     public interface ITransportStatus
     {
         string ToString();
-        void Delayed();
         void OnTime();
+        void Delayed();
         void Cancelled();
     }
 

@@ -12,28 +12,30 @@ namespace TransportTicketing
             try
             {
                 Console.WriteLine("MainApp");
-                Dictionary<String, Passenger> Passengers = new Dictionary<String, Passenger>();
+                Dictionary<String, PassengerController> Passengers = new Dictionary<String, PassengerController>();
                 string id = "SR070148614";
                 string name = "Naseh Rizvi";
                 int billerCode = 241513;
                 string dob = "06/05/2002";
-                DateTime Dob = DateTime.Parse(dob);
-                Passenger passenger = new Passenger(id, name, billerCode, Dob);
-                Passengers.Add(id, passenger);
-                Console.WriteLine(Passengers[id].ToString());
-
-                /*
-                passenger.EnterTransport();
-                Console.WriteLine(passenger.ToString());
-
                 PassengerController passenger = new PassengerController(id, name, billerCode, dob);
+                Passengers.Add(id, passenger);
 
-                passenger.PrintPassengerDetails();
+                Console.WriteLine("Passenger Added to Dictionary");
 
-                passenger.UpdatePassengerStanding("CaNcEl");
+                Transport train = new Train();
 
-                passenger.PrintPassengerDetails();
-                */
+                train.AddPassengers(passenger);
+                Console.WriteLine("Passenger Added to Transport");
+
+                int num = train.GetNumberOfPassengers();
+
+                Console.WriteLine(num);
+
+                foreach (var p in train.GetCurrentPassengers())
+                {
+                    Console.WriteLine("Begin for each loop");
+                    p.PrintPassengerDetails();
+                }
             }
             catch (Exception ex)
             {

@@ -23,12 +23,12 @@ namespace TransportTicketing.Controller
             return _transport.GetNumberOfPassengers();
         }
         
-        public void AddPassenger(Passenger passenger)
+        public void AddPassenger(PassengerController passenger)
         {
             _transport.AddPassengers(passenger);
         }
 
-        public void RemovePassenger(Passenger passenger)
+        public void RemovePassenger(PassengerController passenger)
         {
             _transport.RemovePassenger(passenger);
         }
@@ -38,7 +38,26 @@ namespace TransportTicketing.Controller
             _transport.AddStation(station);
         }
 
-        public List<Passenger> GetCurrrentPassengers()
+        public void UpdateTransportStatus(string status)
+        {
+            switch (status.ToLower())
+            {
+                case "ontime":
+                    _transport.OnTime();
+                    break;
+                case "delayed":
+                    _transport.Delayed();
+                    break;
+                case "cancelled":
+                    _transport.Cancelled();
+                    break;
+                default:
+                    Console.WriteLine("Invalid standing. Please enter 'ontime', 'delayed', or 'cancelled'.");
+                    break;
+            }
+        }
+
+        public List<Passenger> GetCurrentPassengers()
         {
             throw new NotImplementedException();
         }
