@@ -6,22 +6,20 @@ namespace TransportTicketing.Controller
     public class TransportFactory
     {
         private readonly string _transportationMode;
-        public TransportFactory(string transportationMode) 
+
+        public TransportFactory(string transportationMode)
         {
             _transportationMode = transportationMode;
         }
 
         public Transport CreateTransportation()
         {
-            switch (_transportationMode.ToLower())
+            return _transportationMode.ToLower() switch
             {
-                case "bus":
-                    return new Bus();
-                case "train":
-                    return new Train();
-                default:
-                    throw new ArgumentException("Invalid transportation mode.");
-            }
+                "bus" => new Bus(),
+                "train" => new Train(),
+                _ => throw new ArgumentException("Invalid transportation mode."),
+            };
         }
     }
 }

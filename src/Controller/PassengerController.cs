@@ -9,7 +9,7 @@ namespace TransportTicketing.Controller
     /// </summary>
     public class PassengerController : ITransportObserver
     {
-        private Passenger _passenger;
+        private readonly Passenger _passenger;
 
         /// <summary>
         /// Constructor to initalise the PassengerController with initial passenger details.
@@ -92,7 +92,7 @@ namespace TransportTicketing.Controller
         {
             throw new NotImplementedException();
             /*
-            _passsenger.Ticket.SetLeaveTime() 
+            _passenger.ExitTransport();
              */
         }
 
@@ -100,6 +100,7 @@ namespace TransportTicketing.Controller
         {
             // notify the passenger that the bus/train is delayed/canceled
             _passenger.Notify();
+            //Leaving();
         }
     }
 }

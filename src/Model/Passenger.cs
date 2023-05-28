@@ -31,7 +31,7 @@ namespace TransportTicketing.Model
                 $"Passenger Name: \t{Name} \n" +
                 $"Date of Birth: \t\t{DateOfBirth:dd/MM/yyyy} \n" +
                 $"Biller Code: \t\t{BillerCode} \n" +
-                $"Current Standing: \t{GetCurrentStanding()} \n" + 
+                $"Current Standing: \t{GetCurrentStanding()} \n" +
                 $"Current Status: \t{GetCurrentStatus()}";
         }
 
@@ -47,7 +47,7 @@ namespace TransportTicketing.Model
 
         public string GetCurrentStanding()
         {
-            return _currentStanding.Standing();
+            return _currentStanding.ToString();
         }
 
         public string GetCurrentStatus()
@@ -70,9 +70,20 @@ namespace TransportTicketing.Model
             _currentStanding.Cancel();
         }
 
+        public void On()
+        {
+            _currentStatus.On();
+        }
+
+        public void Off()
+        {
+            _currentStatus.Off();
+        }
+
         public void Notify()
         {
-            Console.WriteLine("Your Transport is late/cancelled");
+            Console.WriteLine("Your Transport is cancelled");
+            Off();
         }
 
         /// <summary>
@@ -94,9 +105,10 @@ namespace TransportTicketing.Model
         /// </summary>
         /// <param name="exitTime"></param>
         /*
-        public void ExitTransport(DateTime exitTime)
+        public void ExitTransport()
         {
             // Ticket ticket = Tickets.Last();
+            // ticket.Complete(); // the journey is complete.
             // _currentStatus.Off();
         }
         */
@@ -111,6 +123,7 @@ namespace TransportTicketing.Model
         {
             if (Tickets.Count == 0)
             {
+                // custom exception
                 throw new Exception("No tickets were bought.");
             }
             

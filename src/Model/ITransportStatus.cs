@@ -1,12 +1,13 @@
-﻿using System;
-
-namespace TransportTicketing.Model
+﻿namespace TransportTicketing.Model
 {
     public interface ITransportStatus
     {
         string ToString();
+
         void OnTime();
+
         void Delayed();
+
         void Cancelled();
     }
 
@@ -21,22 +22,28 @@ namespace TransportTicketing.Model
 
         public override string ToString()
         {
-            throw new NotImplementedException();
-        }
-
-        public void Delayed()
-        {
-            throw new NotImplementedException();
+            return "On Time";
         }
 
         public void OnTime()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("The transport is on time");
+        }
+
+        public void Delayed()
+        {
+            if (_transport.GetCurrentStatus().Equals(ToString()))
+            {
+                _transport.SetStatus(new DelayedState(_transport));
+            }
         }
 
         public void Cancelled()
         {
-            throw new NotImplementedException();
+            if (_transport.GetCurrentStatus().Equals(ToString()))
+            {
+                _transport.SetStatus(new CancelledState(_transport));
+            }
         }
     }
 
@@ -48,24 +55,32 @@ namespace TransportTicketing.Model
         {
             _transport = transport;
         }
+
         public override string ToString()
         {
-            throw new NotImplementedException();
-        }
+            return "Delayed";
 
-        public void Delayed()
-        {
-            throw new NotImplementedException();
         }
 
         public void OnTime()
         {
-            throw new NotImplementedException();
+            if (_transport.GetCurrentStatus().Equals(ToString()))
+            {
+                _transport.SetStatus(new OnTimeState(_transport));
+            }
         }
-        
+
+        public void Delayed()
+        {
+            Console.WriteLine("The transport is already delayed.");
+        }
+
         public void Cancelled()
         {
-            throw new NotImplementedException();
+            if (_transport.GetCurrentStatus().Equals(ToString()))
+            {
+                _transport.SetStatus(new CancelledState(_transport));
+            }
         }
     }
 
@@ -80,22 +95,28 @@ namespace TransportTicketing.Model
 
         public override string ToString()
         {
-            throw new NotImplementedException();
-        }
-
-        public void Delayed()
-        {
-            throw new NotImplementedException();
+            return "Cancelled";
         }
 
         public void OnTime()
         {
-            throw new NotImplementedException();
+            if (_transport.GetCurrentStatus().Equals(ToString()))
+            {
+                _transport.SetStatus(new OnTimeState(_transport));
+            }
         }
-        
+
+        public void Delayed()
+        {
+            if (_transport.GetCurrentStatus().Equals(ToString()))
+            {
+                _transport.SetStatus(new DelayedState(_transport));
+            }
+        }
+
         public void Cancelled()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("The transport is already cancelled");
         }
     }
 }
