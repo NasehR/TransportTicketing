@@ -69,7 +69,7 @@ namespace TransportTicketing.Model
     }
 
     /// <summary>
-    /// Represents the state of a passenger in debt. 
+    /// Represents the state of a passenger in debt.
     /// </summary>
     public class DebtState : IPassengerState
     {

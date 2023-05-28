@@ -50,8 +50,8 @@ namespace TransportTicketing.Model
         /// <summary>
         /// Transition to the "off transport" status.
         /// </summary>
-        public void Off() 
-        { 
+        public void Off()
+        {
             Console.WriteLine("Getting off");
             _passenger.SetStatus(new OffTransport(_passenger));
         }

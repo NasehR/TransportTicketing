@@ -9,7 +9,6 @@ namespace TransportTicketing.Controller
 
         public TransportClient(TransportFactory transport)
         {
-
             _transport = transport.CreateTransportation();
         }
 

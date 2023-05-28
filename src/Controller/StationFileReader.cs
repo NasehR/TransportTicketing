@@ -9,7 +9,7 @@ namespace TransportTicketing.Controller
     public class StationFileReader
     {
         private readonly string _fileName;
-        public StationFileReader(string fileName) 
+        public StationFileReader(string fileName)
         {
             _fileName = fileName;
         }
@@ -33,8 +33,8 @@ namespace TransportTicketing.Controller
                         {
                             string stationName = data[0];
                             station = new(stationName);
-                            
-                            if (!(Stations.Contains(station)))
+
+                            if (!Stations.Contains(station))
                             {
                                 Stations.Add(station);
                             }

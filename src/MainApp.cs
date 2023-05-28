@@ -13,10 +13,10 @@ namespace TransportTicketing
             {
                 Console.WriteLine("MainApp");
                 Dictionary<String, PassengerController> Passengers = new Dictionary<String, PassengerController>();
-                string id = "SR070148614";
-                string name = "Naseh Rizvi";
-                int billerCode = 241513;
-                string dob = "06/05/2002";
+                const string id = "SR070148614";
+                const string name = "Naseh Rizvi";
+                const int billerCode = 241513;
+                const string dob = "06/05/2002";
                 PassengerController passenger = new PassengerController(id, name, billerCode, dob);
                 Passengers.Add(id, passenger);
 
