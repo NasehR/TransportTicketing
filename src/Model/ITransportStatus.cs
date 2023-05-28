@@ -59,7 +59,6 @@
         public override string ToString()
         {
             return "Delayed";
-
         }
 
         public void OnTime()

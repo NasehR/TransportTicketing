@@ -14,9 +14,9 @@ namespace TransportTicketing.Controller
         /// <summary>
         /// Constructor to initalise the PassengerController with initial passenger details.
         /// </summary>
-        /// <param name="id">Passenger id</param>
-        /// <param name="name">Passenger name</param>
-        /// <param name="billerCode">Passenger billercode</param>
+        /// <param name="id">Passenger's id</param>
+        /// <param name="name">Passenger's name</param>
+        /// <param name="billerCode">Passenger's billerCode</param>
         /// <param name="dob">Passenger's date of birth</param>
         public PassengerController(string id, string name, int billerCode, string dob)
         {

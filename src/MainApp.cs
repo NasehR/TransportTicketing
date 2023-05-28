@@ -31,7 +31,6 @@ namespace TransportTicketing
                 train.Delayed();
                 Console.WriteLine(train.GetCurrentStatus());
 
-
                 //int num = train.GetNumberOfPassengers();
 
                 //Console.WriteLine(num);
