@@ -82,7 +82,8 @@ namespace TransportTicketing.Model
 
         public void Notify()
         {
-            Console.WriteLine("Your Transport is late/cancelled");
+            Console.WriteLine("Your Transport is cancelled");
+            Off();
         }
 
         /// <summary>
