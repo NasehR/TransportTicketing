@@ -70,6 +70,16 @@ namespace TransportTicketing.Model
             _currentStanding.Cancel();
         }
 
+        public void On()
+        {
+            _currentStatus.On();
+        }
+
+        public void Off()
+        {
+            _currentStatus.Off();
+        }
+
         public void Notify()
         {
             Console.WriteLine("Your Transport is late/cancelled");
