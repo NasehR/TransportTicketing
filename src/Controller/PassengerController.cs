@@ -47,6 +47,22 @@ namespace TransportTicketing.Controller
             }
         }
 
+        public void UpdatePassengerStatus(string status)
+        {
+            switch (status.ToLower())
+            {
+                case "on":
+                    _passenger.On();
+                    break;
+                case "off":
+                    _passenger.Off();
+                    break;
+                default:
+                    Console.WriteLine("Invalid standing. Please enter 'good', 'debt', or 'cancel'.");
+                    break;
+            }
+        }
+
         /// <summary>
         /// Method to printout the details of the passenger
         /// </summary>

@@ -57,11 +57,13 @@ namespace TransportTicketing.Model
         public override void AddPassengers(PassengerController passenger)
         {
             Passengers?.Add(passenger);
+            passenger.UpdatePassengerStatus("on");
         }
 
         public override void RemovePassenger(PassengerController passenger)
         {
             Passengers?.Remove(passenger);
+            passenger.UpdatePassengerStatus("off");
         }
 
         public override void AddStation(Station station)
@@ -132,11 +134,13 @@ namespace TransportTicketing.Model
         public override void AddPassengers(PassengerController passenger)
         {
             Passengers?.Add(passenger);
+            passenger.UpdatePassengerStatus("on");
         }
 
         public override void RemovePassenger(PassengerController passenger)
         {
             Passengers?.Remove(passenger);
+            passenger.UpdatePassengerStatus("off");
         }
 
         public override void AddStation(Station station)
