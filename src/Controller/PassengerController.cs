@@ -75,13 +75,9 @@ namespace TransportTicketing.Controller
         /// Method to create a ticket.
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        public void Boarding()
+        public void Boarding(int ticketNumber, Transport transportMode)
         {
-            throw new NotImplementedException(/*TransportMode transportMode, string entryTime*/);
-            /*
-            DateTime entry = DateTime.Parse(entryTime);
-            _passenger.EnterTransport(transportMode, entry);
-            */
+            _passenger.EnterTransport(ticketNumber, transportMode);
         }
 
         /// <summary>
@@ -90,17 +86,22 @@ namespace TransportTicketing.Controller
         /// <exception cref="NotImplementedException"></exception>
         public void Leaving()
         {
-            throw new NotImplementedException();
-            /*
             _passenger.ExitTransport();
-             */
+        }
+
+        public string GetCurrentStatus()
+        {
+            return _passenger.GetCurrentStatus();
+        }
+
+        public string GetCurrentStanding()
+        {
+            return _passenger.GetCurrentStanding();
         }
 
         public void NotifyPassenger()
         {
-            // notify the passenger that the bus/train is delayed/canceled
             _passenger.Notify();
-            //Leaving();
         }
     }
 }

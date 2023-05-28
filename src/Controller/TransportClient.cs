@@ -22,9 +22,9 @@ namespace TransportTicketing.Controller
             return _transport.GetNumberOfPassengers();
         }
 
-        public void AddPassenger(PassengerController passenger)
+        public void AddPassenger(int ticketNumber, PassengerController passenger)
         {
-            _transport.AddPassengers(passenger);
+            _transport.AddPassengers(ticketNumber, passenger);
         }
 
         public void RemovePassenger(PassengerController passenger)

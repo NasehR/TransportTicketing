@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TransportTicketing.Model;
 using TransportTicketing.Controller;
+using TransportTicketing.View;
 
 namespace TransportTicketing
 {
@@ -13,6 +14,9 @@ namespace TransportTicketing
             {
                 Console.WriteLine("MainApp");
                 Dictionary<String, PassengerController> Passengers = new Dictionary<String, PassengerController>();
+                Dictionary<String, Ticket> Tickets = new Dictionary<String, Ticket>();
+                Dictionary<String, Transport> Transports = new Dictionary<String, Transport>();
+
                 const string id = "SR070148614";
                 const string name = "Naseh Rizvi";
                 const int billerCode = 241513;
@@ -22,14 +26,17 @@ namespace TransportTicketing
 
                 Console.WriteLine("Passenger Added to Dictionary");
 
-                Transport train = new Train();
+                string trainNumber = "999";
+                Transport bus = new Train();
+                Transports.Add(trainNumber, bus);
 
-                train.AddPassengers(passenger);
-                Console.WriteLine("Passenger Added to Transport");
-                Console.WriteLine(train.GetCurrentStatus());
-                Console.WriteLine("Transport should be delayed");
-                train.Delayed();
-                Console.WriteLine(train.GetCurrentStatus());
+                Console.WriteLine(passenger.GetCurrentStatus());
+
+                passenger.Boarding(1, bus);
+                Console.WriteLine(passenger.GetCurrentStatus());
+
+                passenger.Leaving();
+                Console.WriteLine(passenger.GetCurrentStatus());
 
                 //int num = train.GetNumberOfPassengers();
 

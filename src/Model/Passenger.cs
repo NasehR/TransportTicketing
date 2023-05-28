@@ -1,5 +1,6 @@
 ﻿using System;
 using TransportTicketing.Controller;
+using TransportTicketing.View;
 
 namespace TransportTicketing.Model
 {
@@ -11,8 +12,7 @@ namespace TransportTicketing.Model
         public string Name { get; set; }
         public DateTime DateOfBirth { get; }
         public int BillerCode { get; }
-
-        //public LinkedList<Ticket> Tickets { get; }
+        public LinkedList<Ticket> MyTickets { get; }
 
         public Passenger(string id, string name, int billerCode, DateTime dob)
         {
@@ -22,7 +22,7 @@ namespace TransportTicketing.Model
             DateOfBirth = dob;
             _currentStanding = new GoodStandingState(this);
             _currentStatus = new OffTransport(this);
-            //Tickets = new LinkedList<Ticket>();
+            MyTickets = new LinkedList<Ticket>();
         }
 
         public override string ToString()
@@ -82,7 +82,7 @@ namespace TransportTicketing.Model
 
         public void Notify()
         {
-            Console.WriteLine("Your Transport is cancelled");
+            ExitTransport();
             Off();
         }
 
@@ -91,44 +91,38 @@ namespace TransportTicketing.Model
         /// </summary>
         /// <param name="transportMode"></param>
         /// <param name="entryTime"></param>
-        /*
-        public void EnterTransport(TransportMode transportMode, DateTime entryTime)
+        public void EnterTransport(int ticketNumber, Transport transportMode)
         {
-            // Ticket ticket = new Ticket(transportMode, entryTime);
-            // Tickets.AddLast(ticket);
-            // _currentStatus.On();
+            Ticket ticket = new Ticket(ticketNumber, transportMode, this);
+            MyTickets.AddLast(ticket);
+            On();
         }
-        */
 
         /// <summary>
         /// Method to simulate when a passenger exits a bus/train
         /// </summary>
         /// <param name="exitTime"></param>
-        /*
         public void ExitTransport()
         {
-            // Ticket ticket = Tickets.Last();
-            // ticket.Complete(); // the journey is complete.
-            // _currentStatus.Off();
+            Ticket ticket = MyTickets.Last();
+            ticket.NotValid();
+            Off();
         }
-        */
 
         /// <summary>
         /// Method to get the last ticket
         /// </summary>
         /// <returns>The last ticket</returns>
         /// <exception cref="Exception"></exception>
-        /*
-        public Ticket GetLastTicket() 
+        public Ticket GetLastTicket()
         {
-            if (Tickets.Count == 0)
+            if (MyTickets.Count == 0)
             {
                 // custom exception
                 throw new Exception("No tickets were bought.");
             }
-            
-            return Tickets.Last;
+
+            return MyTickets.Last();
         }
-        */
     }
 }

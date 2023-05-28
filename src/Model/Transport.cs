@@ -13,7 +13,7 @@ namespace TransportTicketing.Model
         public abstract void SetStatus(ITransportStatus transportStatus);
         public abstract int GetNumberOfStations();
         public abstract int GetNumberOfPassengers();
-        public abstract void AddPassengers(PassengerController passenger);
+        public abstract void AddPassengers(int ticketNumber, PassengerController passenger);
         public abstract void RemovePassenger(PassengerController passenger);
         public abstract void AddStation(Station station);
         public abstract string GetCurrentStatus();
@@ -64,7 +64,7 @@ namespace TransportTicketing.Model
             return Passengers.Count;
         }
 
-        public override void AddPassengers(PassengerController passenger)
+        public override void AddPassengers(int ticketNumber, PassengerController passenger)
         {
             Passengers?.Add(passenger);
             passenger.UpdatePassengerStatus("on");
@@ -161,7 +161,7 @@ namespace TransportTicketing.Model
             return Passengers.Count;
         }
 
-        public override void AddPassengers(PassengerController passenger)
+        public override void AddPassengers(int ticketNumber, PassengerController passenger)
         {
             Passengers?.Add(passenger);
             passenger.UpdatePassengerStatus("on");
