@@ -1,13 +1,13 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-
-namespace TransportTicketing.Model
+﻿namespace TransportTicketing.Model
 {
     public interface ITransportStatus
     {
         string ToString();
+
         void OnTime();
+
         void Delayed();
+
         void Cancelled();
     }
 
@@ -49,7 +49,7 @@ namespace TransportTicketing.Model
         {
             _transport = transport;
         }
-        
+
         public override string ToString()
         {
             return $"{_transport.ToString} is delayed";
@@ -89,7 +89,7 @@ namespace TransportTicketing.Model
         {
             _transport.SetStatus(new OnTimeState(_transport));
         }
-        
+
         public void Delayed()
         {
             _transport.SetStatus(new DelayedState(_transport));

@@ -67,7 +67,7 @@ namespace TransportTicketing.Model
             _passenger.SetState(new CancelState(_passenger));
         }
     }
-    
+
     /// <summary>
     /// Represents the state of a passenger in debt. 
     /// </summary>
@@ -109,7 +109,7 @@ namespace TransportTicketing.Model
         {
             Console.WriteLine("Passenger is in debt");
         }
-        
+
         /// <summary>
         /// Transition to cancel state
         /// </summary>

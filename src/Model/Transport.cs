@@ -151,7 +151,7 @@ namespace TransportTicketing.Model
 
             return Passengers.Count;
         }
-        
+
         public override void AddPassengers(PassengerController passenger)
         {
             Passengers?.Add(passenger);

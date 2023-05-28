@@ -76,7 +76,7 @@ namespace TransportTicketing.Controller
         {
             throw new NotImplementedException();
             /*
-            _passsenger.Ticket.SetLeaveTime() 
+            _passenger.ExitTransport();
              */
         }
 
@@ -84,6 +84,7 @@ namespace TransportTicketing.Controller
         {
             // notify the passenger that the bus/train is delayed/canceled
             _passenger.Notify();
+            //Leaving();
         }
     }
 }

@@ -31,7 +31,7 @@ namespace TransportTicketing.Model
                 $"Passenger Name: \t{Name} \n" +
                 $"Date of Birth: \t\t{DateOfBirth:dd/MM/yyyy} \n" +
                 $"Biller Code: \t\t{BillerCode} \n" +
-                $"Current Standing: \t{GetCurrentStanding()} \n" + 
+                $"Current Standing: \t{GetCurrentStanding()} \n" +
                 $"Current Status: \t{GetCurrentStatus()}";
         }
 
@@ -94,9 +94,10 @@ namespace TransportTicketing.Model
         /// </summary>
         /// <param name="exitTime"></param>
         /*
-        public void ExitTransport(DateTime exitTime)
+        public void ExitTransport()
         {
             // Ticket ticket = Tickets.Last();
+            // ticket.Complete(); // the journey is complete.
             // _currentStatus.Off();
         }
         */
