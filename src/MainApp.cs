@@ -23,14 +23,6 @@ namespace TransportTicketing
 
                 if (args.Length == 2)
                 {
-                    const string id = "SR070148614";
-                    const string name = "Naseh Rizvi";
-                    const int billerCode = 241513;
-                    const string dob = "06/05/2002";
-                    PassengerController passenger = new PassengerController(id, name, billerCode, dob);
-                    Passengers.Add(id, passenger);
-                    Console.WriteLine("Passenger Added to Dictionary\n");
-
                     string stationFileName = Path.GetFullPath(args[0]);
                     string transportFileName = Path.GetFullPath(args[1]);
 
@@ -39,6 +31,15 @@ namespace TransportTicketing
 
                     TransportFileReader tFR = new TransportFileReader(transportFileName, Stations);
                     Transports = tFR.ReadTransportsFromCSV();
+
+                    const string id = "SR070148614";
+                    const string name = "Naseh Rizvi";
+                    const int billerCode = 241513;
+                    const string dob = "06/05/2002";
+
+                    PassengerController passenger = new PassengerController(id, name, billerCode, dob);
+                    Passengers.Add(id, passenger);
+                    Console.WriteLine("Passenger Added to Dictionary\n");
 
                     Console.Write("Passenger Status: ");
                     Console.WriteLine(Passengers["SR070148614"].GetCurrentStatus() + "\n");
@@ -69,7 +70,18 @@ namespace TransportTicketing
 
                 else if (args.Length == 3)
                 {
+                    string stationFileName = Path.GetFullPath(args[0]);
+                    string transportFileName = Path.GetFullPath(args[1]);
+                    string passengerFileName = Path.GetFullPath(args[2]);
 
+                    StationFileReader sFR = new StationFileReader(stationFileName);
+                    Stations = sFR.ReadStationsFromCSV();
+
+                    TransportFileReader tFR = new TransportFileReader(transportFileName, Stations);
+                    Transports = tFR.ReadTransportsFromCSV();
+
+                    //PassengerFileReader pFR = new PassengerFileReader(passengerFileName);
+                    //Passengers = pFR.ReadPassengersFromJSON();
                 }
 
 
