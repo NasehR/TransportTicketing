@@ -8,7 +8,7 @@ using TransportTicketing.Controller;
 using TransportTicketing.Model;
 using static System.Collections.Specialized.BitVector32;
 
-namespace TransportTicketing.src.Controller
+namespace TransportTicketing.Controller
 {
     public class TransportFileReader
     {
@@ -21,9 +21,9 @@ namespace TransportTicketing.src.Controller
             _stations = stations;
         }
 
-        public List<TransportClient> ReadTransportsFromCSV()
+        public Dictionary<string, TransportClient> ReadTransportsFromCSV()
         {
-            List<TransportClient> transports = new List<TransportClient>();
+            Dictionary<string, TransportClient> transports = new Dictionary<string, TransportClient>();
 
             try
             {
@@ -40,15 +40,16 @@ namespace TransportTicketing.src.Controller
 
                         if (data.Length >= 2)
                         {
-                            string transportName = data[0];
-                            string[] stationNames = data[1..];
+                            string nameOfTransport = data[0];
+                            string transportName = data[1].Trim();
+                            string[] stationNames = data[2..];
 
                             transport = new TransportFactory(transportName);
                             transportMode = new TransportClient(transport);
 
                             foreach (string stationName in stationNames)
                             {
-                                currentStation = new(stationName);
+                                currentStation = new(stationName.Trim());
 
                                 if (_stations.Contains(currentStation))
                                 {
@@ -56,7 +57,7 @@ namespace TransportTicketing.src.Controller
                                 }
                             }
 
-                            transports.Add(transportMode);
+                            transports.Add(nameOfTransport, transportMode);
                         }
                     }
                 }

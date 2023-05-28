@@ -21,7 +21,7 @@ namespace TransportTicketing.Controller
 
             try
             {
-                using (StreamReader reader = new(_fileName))
+                using (StreamReader reader = new StreamReader(_fileName))
                 {
                     string? line;
                     Station station;
@@ -32,7 +32,7 @@ namespace TransportTicketing.Controller
 
                         if (data.Length >= 1)
                         {
-                            string stationName = data[0];
+                            string stationName = data[0].Trim();
                             station = new(stationName);
 
                             if (!Stations.Contains(station))

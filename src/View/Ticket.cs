@@ -12,10 +12,10 @@ namespace TransportTicketing.View
     {
         private ITicketStatus _ticketStatus;
         public int Id { get; set; }
-        public Transport TransportMode { get; set; }
+        public TransportClient TransportMode { get; set; }
         public Passenger Passenger { get; set; }
 
-        public Ticket(int id, Transport transport, Passenger passenger)
+        public Ticket(int id, TransportClient transport, Passenger passenger)
         {
             Id = id;
             TransportMode = transport;

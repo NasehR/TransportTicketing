@@ -75,18 +75,20 @@ namespace TransportTicketing.Controller
         /// Method to create a ticket.
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        public void Boarding(int ticketNumber, Transport transportMode)
+        public void Boarding(int ticketNumber, TransportClient transportMode)
         {
             _passenger.EnterTransport(ticketNumber, transportMode);
+            transportMode.AddPassenger(ticketNumber, this);
         }
 
         /// <summary>
         /// Method to update the ticket with the exiting time
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        public void Leaving()
+        public void Leaving(TransportClient transportMode)
         {
             _passenger.ExitTransport();
+            transportMode.RemovePassenger(this);
         }
 
         public string GetCurrentStatus()
