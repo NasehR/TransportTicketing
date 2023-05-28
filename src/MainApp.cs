@@ -26,16 +26,21 @@ namespace TransportTicketing
 
                 train.AddPassengers(passenger);
                 Console.WriteLine("Passenger Added to Transport");
+                Console.WriteLine(train.GetCurrentStatus());
+                Console.WriteLine("Transport should be delayed");
+                train.Delayed();
+                Console.WriteLine(train.GetCurrentStatus());
 
-                int num = train.GetNumberOfPassengers();
 
-                Console.WriteLine(num);
+                //int num = train.GetNumberOfPassengers();
 
-                foreach (var p in train.GetCurrentPassengers())
-                {
-                    Console.WriteLine("Begin for each loop");
-                    p.PrintPassengerDetails();
-                }
+                //Console.WriteLine(num);
+
+                //foreach (var p in train.GetCurrentPassengers())
+                //{
+                //    Console.WriteLine("Begin for each loop");
+                //    p.PrintPassengerDetails();
+                //}
             }
             catch (Exception ex)
             {

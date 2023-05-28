@@ -6,6 +6,7 @@ namespace TransportTicketing.Controller
     public class TransportFactory
     {
         private readonly string _transportationMode;
+
         public TransportFactory(string transportationMode)
         {
             _transportationMode = transportationMode;

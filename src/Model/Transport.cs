@@ -6,7 +6,7 @@ namespace TransportTicketing.Model
 {
     public abstract class Transport
     {
-        public ITransportStatus? TransportStatus;
+        public ITransportStatus? TransportStatus { get; set; }
         public List<PassengerController>? Passengers { get; set; }
         public Dictionary<string, Station>? Stations { get; set; }
 
@@ -81,7 +81,14 @@ namespace TransportTicketing.Model
 
         public override string GetCurrentStatus()
         {
-            return TransportStatus.ToString();
+            string? s = null;
+            Console.WriteLine(TransportStatus != null);
+            if (TransportStatus != null)
+            {
+                s = TransportStatus.ToString();
+            }
+
+            return s ?? string.Empty;
         }
 
         public override void OnTime()
@@ -169,7 +176,13 @@ namespace TransportTicketing.Model
 
         public override string GetCurrentStatus()
         {
-            return TransportStatus.ToString();
+            string? s = null;
+            if (TransportStatus != null)
+            {
+                s = TransportStatus.ToString();
+            }
+
+            return s ?? string.Empty;
         }
 
         public override void OnTime()

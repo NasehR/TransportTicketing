@@ -22,7 +22,7 @@
 
         public override string ToString()
         {
-            return $"{_transport.ToString} is on time";
+            return "On Time";
         }
 
         public void OnTime()
@@ -32,12 +32,18 @@
 
         public void Delayed()
         {
-            _transport.SetStatus(new DelayedState(_transport));
+            if (_transport.GetCurrentStatus().Equals(ToString()))
+            {
+                _transport.SetStatus(new DelayedState(_transport));
+            }
         }
 
         public void Cancelled()
         {
-            _transport.SetStatus(new CancelledState(_transport));
+            if (_transport.GetCurrentStatus().Equals(ToString()))
+            {
+                _transport.SetStatus(new CancelledState(_transport));
+            }
         }
     }
 
@@ -52,12 +58,16 @@
 
         public override string ToString()
         {
-            return $"{_transport.ToString} is delayed";
+            return "Delayed";
+
         }
 
         public void OnTime()
         {
-            _transport.SetStatus(new OnTimeState(_transport));
+            if (_transport.GetCurrentStatus().Equals(ToString()))
+            {
+                _transport.SetStatus(new OnTimeState(_transport));
+            }
         }
 
         public void Delayed()
@@ -67,7 +77,10 @@
 
         public void Cancelled()
         {
-            _transport.SetStatus(new CancelledState(_transport));
+            if (_transport.GetCurrentStatus().Equals(ToString()))
+            {
+                _transport.SetStatus(new CancelledState(_transport));
+            }
         }
     }
 
@@ -82,17 +95,23 @@
 
         public override string ToString()
         {
-            return $"{_transport.ToString} is cancelled";
+            return "Cancelled";
         }
 
         public void OnTime()
         {
-            _transport.SetStatus(new OnTimeState(_transport));
+            if (_transport.GetCurrentStatus().Equals(ToString()))
+            {
+                _transport.SetStatus(new OnTimeState(_transport));
+            }
         }
 
         public void Delayed()
         {
-            _transport.SetStatus(new DelayedState(_transport));
+            if (_transport.GetCurrentStatus().Equals(ToString()))
+            {
+                _transport.SetStatus(new DelayedState(_transport));
+            }
         }
 
         public void Cancelled()

@@ -9,6 +9,7 @@ namespace TransportTicketing.Controller
     public class StationFileReader
     {
         private readonly string _fileName;
+
         public StationFileReader(string fileName)
         {
             _fileName = fileName;

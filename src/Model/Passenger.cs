@@ -47,7 +47,7 @@ namespace TransportTicketing.Model
 
         public string GetCurrentStanding()
         {
-            return _currentStanding.Standing();
+            return _currentStanding.ToString();
         }
 
         public string GetCurrentStatus()
