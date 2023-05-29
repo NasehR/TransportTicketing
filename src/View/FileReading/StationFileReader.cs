@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using TransportTicketing.View;
 
-namespace TransportTicketing.View
+namespace TransportTicketing.View.FileReading
 {
     public class StationFileReader
     {

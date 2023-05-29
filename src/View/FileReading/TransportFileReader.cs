@@ -8,7 +8,7 @@ using TransportTicketing.Controller.TransportController;
 using TransportTicketing.View;
 using static System.Collections.Specialized.BitVector32;
 
-namespace TransportTicketing.View
+namespace TransportTicketing.View.FileReading
 {
     public class TransportFileReader
     {

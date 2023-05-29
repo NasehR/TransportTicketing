@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TransportTicketing.Controller.PassengersController;
 
-namespace TransportTicketing.View
+namespace TransportTicketing.View.FileReading
 {
     public class PassengerFileReader
     {
