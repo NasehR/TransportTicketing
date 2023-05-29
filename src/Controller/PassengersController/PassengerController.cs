@@ -12,6 +12,10 @@ namespace TransportTicketing.Controller.PassengersController
     public class PassengerController : ITransportObserver
     {
         private readonly Passenger _passenger;
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public int BillerCode { get; set; }
+        public string DOB { get; set; }
 
         /// <summary>
         /// Constructor to initalise the PassengerController with initial passenger details.
@@ -22,7 +26,11 @@ namespace TransportTicketing.Controller.PassengersController
         /// <param name="dob">Passenger's date of birth</param>
         public PassengerController(string id, string name, int billerCode, string dob)
         {
-            DateTime Dob = DateTime.Parse(dob);
+            Id = id;
+            Name = name;
+            BillerCode = billerCode;
+            DOB = dob;
+            DateTime Dob = DateTime.Parse(DOB);
             _passenger = new Passenger(id, name, billerCode, Dob);
         }
 
