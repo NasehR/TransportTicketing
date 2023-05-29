@@ -32,6 +32,7 @@ namespace TransportTicketing
                     TransportFileReader tFR = new TransportFileReader(transportFileName, Stations);
                     Transports = tFR.ReadTransportsFromCSV();
 
+                    /*
                     const string id = "SR070148614";
                     const string name = "Naseh Rizvi";
                     const int billerCode = 241513;
@@ -65,9 +66,8 @@ namespace TransportTicketing
                     {
                         p.PrintPassengerDetails();
                     }
-
+                    */
                 }
-
                 else if (args.Length == 3)
                 {
                     string stationFileName = Path.GetFullPath(args[0]);
@@ -80,12 +80,9 @@ namespace TransportTicketing
                     TransportFileReader tFR = new TransportFileReader(transportFileName, Stations);
                     Transports = tFR.ReadTransportsFromCSV();
 
-                    //PassengerFileReader pFR = new PassengerFileReader(passengerFileName);
-                    //Passengers = pFR.ReadPassengersFromJSON();
+                    PassengerFileReader pFR = new PassengerFileReader(passengerFileName);
+                    Passengers = pFR.ReadPassengersFromJSON();
                 }
-
-
-
             }
             catch (Exception ex)
             {
