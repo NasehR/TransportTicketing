@@ -6,7 +6,7 @@ namespace TransportTicketing.Model.PassengerModel
 {
     public class Passenger
     {
-        private IPassengerState _currentStanding;
+        private IPassengerStanding _currentStanding;
         private IPassengerStatus _currentStatus;
         public string Id { get; }
         public string Name { get; set; }
@@ -35,7 +35,7 @@ namespace TransportTicketing.Model.PassengerModel
                 $"Current Status: \t{GetCurrentStatus()}";
         }
 
-        public void SetState(IPassengerState passengerState)
+        public void SetState(IPassengerStanding passengerState)
         {
             _currentStanding = passengerState;
         }

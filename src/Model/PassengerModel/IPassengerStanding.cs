@@ -8,7 +8,7 @@ namespace TransportTicketing.Model.PassengerModel
     /// <summary>
     /// Interface to toggle between difference states
     /// </summary>
-    public interface IPassengerState
+    public interface IPassengerStanding
     {
         string ToString();
         void Good();
@@ -19,7 +19,7 @@ namespace TransportTicketing.Model.PassengerModel
     /// <summary>
     /// Represents the state of a passenger in good standing.
     /// </summary>
-    public class GoodStandingState : IPassengerState
+    public class GoodStandingState : IPassengerStanding
     {
         protected Passenger _passenger;
 
@@ -77,7 +77,7 @@ namespace TransportTicketing.Model.PassengerModel
     /// <summary>
     /// Represents the state of a passenger in debt.
     /// </summary>
-    public class DebtState : IPassengerState
+    public class DebtState : IPassengerStanding
     {
         protected Passenger _passenger;
 
@@ -135,7 +135,7 @@ namespace TransportTicketing.Model.PassengerModel
     /// <summary>
     /// Represents the state of a cancelled passenger.
     /// </summary>
-    public class CancelState : IPassengerState
+    public class CancelState : IPassengerStanding
     {
         protected Passenger _passenger;
 
