@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Globalization;
-using TransportTicketing.Model;
+using TransportTicketing.Model.TransportModel;
+using TransportTicketing.Model.PassengerModel;
+using TransportTicketing.Controller.TransportController;
 
-namespace TransportTicketing.Controller
+namespace TransportTicketing.Controller.PassengersController
 {
     /// <summary>
     /// The class is responsible for passenger related operations

@@ -3,7 +3,7 @@
 /// <summary>
 /// State pattern to change the standing of the passenger
 /// </summary>
-namespace TransportTicketing.Model
+namespace TransportTicketing.Model.PassengerModel
 {
     /// <summary>
     /// Interface to toggle between difference states

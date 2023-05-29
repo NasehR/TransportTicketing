@@ -1,8 +1,8 @@
 ﻿using System;
-using TransportTicketing.Controller;
+using TransportTicketing.Controller.TransportController;
 using TransportTicketing.View;
 
-namespace TransportTicketing.Model
+namespace TransportTicketing.Model.PassengerModel
 {
     public class Passenger
     {

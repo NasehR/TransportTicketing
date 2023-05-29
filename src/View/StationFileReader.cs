@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using TransportTicketing.Model;
+using TransportTicketing.View;
 
-namespace TransportTicketing.Controller
+namespace TransportTicketing.View
 {
     public class StationFileReader
     {

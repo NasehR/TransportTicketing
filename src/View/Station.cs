@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TransportTicketing.Model
+namespace TransportTicketing.View
 {
     public class Station
     {

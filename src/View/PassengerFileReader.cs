@@ -7,8 +7,9 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using TransportTicketing.Controller.PassengersController;
 
-namespace TransportTicketing.Controller
+namespace TransportTicketing.View
 {
     public class PassengerFileReader
     {

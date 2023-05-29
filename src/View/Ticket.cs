@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TransportTicketing.Controller;
 using TransportTicketing.Model;
+using TransportTicketing.Model.PassengerModel;
+using TransportTicketing.Controller.TransportController;
 
 namespace TransportTicketing.View
 {

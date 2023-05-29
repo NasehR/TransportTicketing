@@ -1,4 +1,4 @@
-﻿namespace TransportTicketing.Model
+﻿namespace TransportTicketing.Model.TransportModel
 {
     public interface ITransportStatus
     {

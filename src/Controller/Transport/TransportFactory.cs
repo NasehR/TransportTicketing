@@ -1,7 +1,7 @@
 ﻿using System;
-using TransportTicketing.Model;
+using TransportTicketing.Model.TransportModel;
 
-namespace TransportTicketing.Controller
+namespace TransportTicketing.Controller.TransportController
 {
     public class TransportFactory
     {

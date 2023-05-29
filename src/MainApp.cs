@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using TransportTicketing.Model;
-using TransportTicketing.Controller;
 using TransportTicketing.View;
 using Microsoft.VisualBasic.FileIO;
+using TransportTicketing.Controller.PassengersController;
+using TransportTicketing.Controller.TransportController;
 
 namespace TransportTicketing
 {

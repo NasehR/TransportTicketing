@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using TransportTicketing.Controller;
+using TransportTicketing.Controller.PassengersController;
+using TransportTicketing.View;
 
-namespace TransportTicketing.Model
+namespace TransportTicketing.Model.TransportModel
 {
     public abstract class Transport
     {
@@ -124,7 +125,7 @@ namespace TransportTicketing.Model
     {
         public Train()
         {
-            Stations = new Dictionary<String, Station>();
+            Stations = new Dictionary<string, Station>();
             Passengers = new List<PassengerController>();
             TransportStatus = new OnTimeState(this);
         }

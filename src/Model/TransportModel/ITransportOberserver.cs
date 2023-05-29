@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TransportTicketing.Model
+namespace TransportTicketing.Model.TransportModel
 {
     public interface ITransportObserver
     {

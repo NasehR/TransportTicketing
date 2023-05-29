@@ -4,11 +4,11 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
-using TransportTicketing.Controller;
-using TransportTicketing.Model;
+using TransportTicketing.Controller.TransportController;
+using TransportTicketing.View;
 using static System.Collections.Specialized.BitVector32;
 
-namespace TransportTicketing.Controller
+namespace TransportTicketing.View
 {
     public class TransportFileReader
     {

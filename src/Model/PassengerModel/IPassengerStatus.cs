@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TransportTicketing.Model
+namespace TransportTicketing.Model.PassengerModel
 {
     /// <summary>
     /// Interface to toggle between different statuses of a passenger.
@@ -90,7 +90,7 @@ namespace TransportTicketing.Model
         /// </summary>
         public void On()
         {
-            if(_passenger.GetCurrentStatus().Equals(ToString()))
+            if (_passenger.GetCurrentStatus().Equals(ToString()))
             {
                 Console.WriteLine("Getting on");
                 _passenger.SetStatus(new OnTransport(_passenger));
