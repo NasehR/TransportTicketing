@@ -30,31 +30,28 @@ namespace TransportTicketing.View.FileReading
                 using (StreamReader reader = new StreamReader(_fileName))
                 {
                     string json = reader.ReadToEnd();
-                    //Console.WriteLine(json);
 
                     passengerDictionary = JsonSerializer.Deserialize<Dictionary<string, PassengerController>>(json);
-
-                    //passengers = passengerDictionary.Values.ToList();
-
-                    //foreach (var passenger in passengers)
-                    //{
-                    //    passenger.PrintPassengerDetails();
-                    //}
                 }
 
                 Console.WriteLine("Passengers successfully read from the JSON file.");
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("File not found: " + _fileName);
+                Console.WriteLine($"File not found: {Path.GetFileName(_fileName)}");
             }
             catch (JsonException)
             {
-                Console.WriteLine("Invalid JSON format in file: " + _fileName);
+                Console.WriteLine($"Invalid JSON format in file: {Path.GetFileName(_fileName)}");
             }
-            catch (Exception ex)
+            catch (NotSupportedException ex)
             {
-                Console.WriteLine("An error occurred while reading the JSON file: " + ex.Message);
+                Console.WriteLine("Not supported exception occurred: " + ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.WriteLine("Argument null exception occurred: " + ex.Message);
+                // Handle the ArgumentNullException
             }
 
             return passengerDictionary;

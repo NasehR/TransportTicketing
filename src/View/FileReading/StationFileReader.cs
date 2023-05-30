@@ -45,9 +45,21 @@ namespace TransportTicketing.View.FileReading
 
                 Console.WriteLine("Stations successfully read from the CSV file.");
             }
-            catch (Exception ex)
+            catch (FileNotFoundException)
             {
-                Console.WriteLine("An error occurred while reading the CSV file: " + ex.Message);
+                Console.WriteLine($"File not found: {Path.GetFileName(_fileName)}");
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.WriteLine("File name is null: " + ex.Message);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine($"Access denied: {Path.GetFileName(_fileName)}");
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine("I/O error occurred: " + ex.Message);
             }
 
             return Stations;
