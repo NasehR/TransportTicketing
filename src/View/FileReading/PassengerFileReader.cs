@@ -6,8 +6,8 @@ using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using TransportTicketing.Controller.PassengersController;
+using TransportTicketing.Model.PassengerModel;
 
 namespace TransportTicketing.View.FileReading
 {
@@ -22,33 +22,24 @@ namespace TransportTicketing.View.FileReading
 
         public Dictionary<string, PassengerController> ReadPassengersFromJSON()
         {
-            Dictionary<string, PassengerController> passengers = new Dictionary<string, PassengerController>();
-            //LinkedList<PassengerController>? passengerList;
+            List<PassengerController> passengers = new List<PassengerController>();
+            Dictionary<string, PassengerController> passengerDictionary = new Dictionary<string, PassengerController>();
 
             try
             {
                 using (StreamReader reader = new StreamReader(_fileName))
                 {
                     string json = reader.ReadToEnd();
-                    Console.WriteLine(json);
+                    //Console.WriteLine(json);
 
-                    //passengerList = JsonSerializer.Deserialize<LinkedList<PassengerController>>(json);
+                    passengerDictionary = JsonSerializer.Deserialize<Dictionary<string, PassengerController>>(json);
 
-                    /*
-                    foreach (var passenger in json)
-                    {
-                        Console.WriteLine(passenger);
-                    }
-                    */
-                    // create a passengercontroller
-                    /*
-                    const string id = "SR070148614";
-                    const string name = "Naseh Rizvi";
-                    const int billerCode = 241513;
-                    const string dob = "06/05/2002";
+                    //passengers = passengerDictionary.Values.ToList();
 
-                    PassengerController passenger = new PassengerController(id, name, billerCode, dob);
-                    */
+                    //foreach (var passenger in passengers)
+                    //{
+                    //    passenger.PrintPassengerDetails();
+                    //}
                 }
 
                 Console.WriteLine("Passengers successfully read from the JSON file.");
@@ -66,7 +57,7 @@ namespace TransportTicketing.View.FileReading
                 Console.WriteLine("An error occurred while reading the JSON file: " + ex.Message);
             }
 
-            return passengers;
+            return passengerDictionary;
         }
     }
 }

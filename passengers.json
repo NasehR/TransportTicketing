@@ -1,20 +1,20 @@
 {
-    "passenger1": {
-        "id": "001",
-        "name": "John Doe",
-        "billerCode": 1234,
-        "dob": "01/01/1990"
+    "001": {
+        "Id": "001",
+        "Name": "John Doe",
+        "BillerCode": 1234,
+        "DOB": "01/01/1990"
     },
-    "passenger2": {
-        "id": "002",
-        "name": "Jane Smith",
-        "billerCode": 5678,
-        "dob": "10/05/1995"
+    "002": {
+        "Id": "002",
+        "Name": "Jane Smith",
+        "BillerCode": 5678,
+        "DOB": "10/05/1995"
     },
-    "passenger3": {
-        "id": "003",
-        "name": "Mike Johnson",
-        "billerCode": 9876,
-        "dob": "05/09/1985"
+    "003": {
+        "Id": "003",
+        "Name": "Mike Johnson",
+        "BillerCode": 9876,
+        "DOB": "05/09/1985"
     }
 }

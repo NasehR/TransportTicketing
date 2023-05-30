@@ -74,6 +74,7 @@ namespace TransportTicketing
                     string stationFileName = Path.GetFullPath(args[0]);
                     string transportFileName = Path.GetFullPath(args[1]);
                     string passengerFileName = Path.GetFullPath(args[2]);
+                    List<PassengerController> PC = new List<PassengerController>();
 
                     StationFileReader sFR = new StationFileReader(stationFileName);
                     Stations = sFR.ReadStationsFromCSV();
@@ -83,6 +84,9 @@ namespace TransportTicketing
 
                     PassengerFileReader pFR = new PassengerFileReader(passengerFileName);
                     Passengers = pFR.ReadPassengersFromJSON();
+
+
+                    Passengers["001"].PrintPassengerDetails();
                 }
             }
             catch (Exception ex)
