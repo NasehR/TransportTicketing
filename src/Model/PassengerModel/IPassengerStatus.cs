@@ -8,7 +8,9 @@ namespace TransportTicketing.Model.PassengerModel
     public interface IPassengerStatus
     {
         string ToString();
+
         void On();
+
         void Off();
     }
 

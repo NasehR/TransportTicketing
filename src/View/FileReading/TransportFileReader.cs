@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using TransportTicketing.Controller.TransportController;
+﻿using TransportTicketing.Controller.TransportController;
 using TransportTicketing.View;
-using static System.Collections.Specialized.BitVector32;
 
 namespace TransportTicketing.View.FileReading
 {

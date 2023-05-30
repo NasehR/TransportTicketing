@@ -32,9 +32,9 @@ namespace TransportTicketing.View.FileReading
                 {
                     string json = reader.ReadToEnd();
 
-                    #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                     passengerDictionary = JsonSerializer.Deserialize<Dictionary<string, PassengerController>>(json);
-                    #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
                 }
 
                 _logger.LogInfo("Passengers successfully read from the JSON file.");
@@ -56,9 +56,9 @@ namespace TransportTicketing.View.FileReading
                 _logger.LogError(ex, $"Argument null exception occurred: {ex.Message}");
             }
 
-            #pragma warning disable CS8603 // Possible null reference return.
+#pragma warning disable CS8603 // Possible null reference return.
             return passengerDictionary;
-            #pragma warning restore CS8603 // Possible null reference return.
+#pragma warning restore CS8603 // Possible null reference return.
         }
     }
 }

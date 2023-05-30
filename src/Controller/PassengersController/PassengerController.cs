@@ -45,12 +45,15 @@ namespace TransportTicketing.Controller.PassengersController
                 case "good":
                     _passenger.Good();
                     break;
+
                 case "debt":
                     _passenger.Debt();
                     break;
+
                 case "cancel":
                     _passenger.Cancel();
                     break;
+
                 default:
                     throw new PassengerExceptions($"{standing} as a standing does not exits");
             }
@@ -63,9 +66,11 @@ namespace TransportTicketing.Controller.PassengersController
                 case "on":
                     _passenger.On();
                     break;
+
                 case "off":
                     _passenger.Off();
                     break;
+
                 default:
                     throw new PassengerExceptions($"{status} as a status does not exits");
             }

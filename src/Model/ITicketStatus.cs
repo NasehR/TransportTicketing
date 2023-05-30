@@ -11,7 +11,9 @@ namespace TransportTicketing.Model
     public interface ITicketStatus
     {
         string ToString();
+
         void Valid();
+
         void NotValid();
     }
 
@@ -36,7 +38,7 @@ namespace TransportTicketing.Model
 
         public void NotValid()
         {
-            if(_ticket.Validity().Equals(ToString()))
+            if (_ticket.Validity().Equals(ToString()))
             {
                 _ticket.SetValidity(new ClosedTicket(_ticket));
             }

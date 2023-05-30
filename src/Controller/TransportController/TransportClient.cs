@@ -46,12 +46,15 @@ namespace TransportTicketing.Controller.TransportController
                 case "ontime":
                     _transport.OnTime();
                     break;
+
                 case "delayed":
                     _transport.Delayed();
                     break;
+
                 case "cancelled":
                     _transport.Cancelled();
                     break;
+
                 default:
                     throw new TransportExceptions($"{status} as a status does not exits");
             }

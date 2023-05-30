@@ -12,15 +12,25 @@ namespace TransportTicketing.Model.TransportModel
         public Dictionary<string, Station>? Stations { get; set; }
 
         public abstract void SetStatus(ITransportStatus transportStatus);
+
         public abstract int GetNumberOfStations();
+
         public abstract int GetNumberOfPassengers();
+
         public abstract void AddPassengers(int ticketNumber, PassengerController passenger);
+
         public abstract void RemovePassenger(PassengerController passenger);
+
         public abstract void AddStation(Station station);
+
         public abstract string GetCurrentStatus();
+
         public abstract void OnTime();
+
         public abstract void Delayed();
+
         public abstract void Cancelled();
+
         public abstract List<PassengerController> GetCurrentPassengers();
     }
 

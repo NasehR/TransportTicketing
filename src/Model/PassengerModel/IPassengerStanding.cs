@@ -11,8 +11,11 @@ namespace TransportTicketing.Model.PassengerModel
     public interface IPassengerStanding
     {
         string ToString();
+
         void Good();
+
         void Debt();
+
         void Cancel();
     }
 
