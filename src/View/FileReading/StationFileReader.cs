@@ -9,10 +9,12 @@ namespace TransportTicketing.View.FileReading
     public class StationFileReader
     {
         private readonly string _fileName;
+        private readonly ErrorLogger _logger;
 
-        public StationFileReader(string fileName)
+        public StationFileReader(string fileName, ErrorLogger logger)
         {
             _fileName = fileName;
+            _logger = logger;
         }
 
         public List<Station> ReadStationsFromCSV()
@@ -43,23 +45,23 @@ namespace TransportTicketing.View.FileReading
                     }
                 }
 
-                Console.WriteLine("Stations successfully read from the CSV file.");
+                _logger.LogInfo("Stations successfully read from the CSV file.");
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                Console.WriteLine($"File not found: {Path.GetFileName(_fileName)}");
+                _logger.LogError(ex, $"File not found: {Path.GetFileName(_fileName)}");
             }
             catch (ArgumentNullException ex)
             {
-                Console.WriteLine("File name is null: " + ex.Message);
+                _logger.LogError(ex, $"File name is null: {ex.Message}");
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException ex)
             {
-                Console.WriteLine($"Access denied: {Path.GetFileName(_fileName)}");
+                _logger.LogError(ex, $"Access denied: {Path.GetFileName(_fileName)}");
             }
             catch (IOException ex)
             {
-                Console.WriteLine("I/O error occurred: " + ex.Message);
+                _logger.LogError(ex, $"I/O error occurred: {ex.Message}");
             }
 
             return Stations;

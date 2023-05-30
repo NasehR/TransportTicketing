@@ -14,10 +14,12 @@ namespace TransportTicketing.View.FileReading
     public class PassengerFileReader
     {
         private readonly string _fileName;
+        private readonly ErrorLogger _logger;
 
-        public PassengerFileReader(string fileName)
+        public PassengerFileReader(string fileName, ErrorLogger logger)
         {
             _fileName = fileName;
+            _logger = logger;
         }
 
         public Dictionary<string, PassengerController> ReadPassengersFromJSON()
@@ -36,24 +38,23 @@ namespace TransportTicketing.View.FileReading
                     #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
                 }
 
-                Console.WriteLine("Passengers successfully read from the JSON file.");
+                _logger.LogInfo("Passengers successfully read from the JSON file.");
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                Console.WriteLine($"File not found: {Path.GetFileName(_fileName)}");
+                _logger.LogError(ex, $"File not found: {Path.GetFileName(_fileName)}");
             }
-            catch (JsonException)
+            catch (JsonException ex)
             {
-                Console.WriteLine($"Invalid JSON format in file: {Path.GetFileName(_fileName)}");
+                _logger.LogError(ex, $"Invalid JSON format in file: {Path.GetFileName(_fileName)}");
             }
             catch (NotSupportedException ex)
             {
-                Console.WriteLine("Not supported exception occurred: " + ex.Message);
+                _logger.LogError(ex, $"Not supported exception occurred: {ex.Message}");
             }
             catch (ArgumentNullException ex)
             {
-                Console.WriteLine("Argument null exception occurred: " + ex.Message);
-                // Handle the ArgumentNullException
+                _logger.LogError(ex, $"Argument null exception occurred: {ex.Message}");
             }
 
             #pragma warning disable CS8603 // Possible null reference return.

@@ -5,6 +5,7 @@ using Microsoft.VisualBasic.FileIO;
 using TransportTicketing.Controller.PassengersController;
 using TransportTicketing.Controller.TransportController;
 using TransportTicketing.View.FileReading;
+using System.Globalization;
 
 namespace TransportTicketing
 {
@@ -12,25 +13,33 @@ namespace TransportTicketing
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine(args.Length);
-            Console.WriteLine("MainApp");
+            const string errorFilePath = "ErrorLogs.txt";
+            string stationFileName;
+            string transportFileName;
+            string passengerFileName;
+
+            if (File.Exists(errorFilePath))
+            {
+                File.Delete(errorFilePath);
+            }
 
             Dictionary<string, PassengerController> Passengers;
             Dictionary<string, Ticket> Tickets;
             Dictionary<string, TransportClient> Transports;
             List<Station> Stations;
+            ErrorLogger Logger = new(errorFilePath);
 
             if (args.Length == 2)
             {
                 try
                 {
-                    string stationFileName = Path.GetFullPath(args[0]);
-                    string transportFileName = Path.GetFullPath(args[1]);
+                    stationFileName = Path.GetFullPath(args[0]);
+                    transportFileName = Path.GetFullPath(args[1]);
 
-                    StationFileReader sFR = new(stationFileName);
+                    StationFileReader sFR = new(stationFileName, Logger);
                     Stations = sFR.ReadStationsFromCSV();
 
-                    TransportFileReader tFR = new(transportFileName, Stations);
+                    TransportFileReader tFR = new(transportFileName, Stations, Logger);
                     Transports = tFR.ReadTransportsFromCSV();
                 }
                 catch (PassengerExceptions ex)
@@ -42,26 +51,33 @@ namespace TransportTicketing
             {
                 try
                 {
-                    string stationFileName = Path.GetFullPath(args[0]);
-                    string transportFileName = Path.GetFullPath(args[1]);
-                    string passengerFileName = Path.GetFullPath(args[2]);
+                    stationFileName = Path.GetFullPath(args[0]);
+                    transportFileName = Path.GetFullPath(args[1]);
+                    passengerFileName = Path.GetFullPath(args[2]);
 
-                    StationFileReader sFR = new(stationFileName);
+                    StationFileReader sFR = new(stationFileName, Logger);
                     Stations = sFR.ReadStationsFromCSV();
 
-                    TransportFileReader tFR = new(transportFileName, Stations);
+                    TransportFileReader tFR = new(transportFileName, Stations, Logger);
                     Transports = tFR.ReadTransportsFromCSV();
 
-                    PassengerFileReader pFR = new(passengerFileName);
+                    PassengerFileReader pFR = new(passengerFileName, Logger);
                     Passengers = pFR.ReadPassengersFromJSON();
 
-                    Console.WriteLine(Passengers["003"].GetCurrentStanding());
-                    Passengers["003"].UpdatePassengerStanding("canced");
-                    Console.WriteLine(Passengers["003"].GetCurrentStanding());
+                    //Console.WriteLine(Passengers["003"].GetCurrentStanding());
+                    //Console.WriteLine(Passengers["003"].GetCurrentStanding());
                 }
                 catch (PassengerExceptions ex)
                 {
-                    Console.WriteLine($"{ex.Message}");
+                    Logger.LogError(ex, $"{ex.Message}");
+                }
+                catch (TransportExceptions ex)
+                {
+                    Logger.LogError(ex, $"{ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex, $"{ex.Message}");
                 }
             }
         }
