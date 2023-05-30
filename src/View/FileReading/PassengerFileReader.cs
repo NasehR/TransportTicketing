@@ -23,11 +23,11 @@ namespace TransportTicketing.View.FileReading
         public Dictionary<string, PassengerController> ReadPassengersFromJSON()
         {
             List<PassengerController> passengers;
-            Dictionary<string, PassengerController> passengerDictionary = new Dictionary<string, PassengerController>();
+            Dictionary<string, PassengerController> passengerDictionary = new();
 
             try
             {
-                using (StreamReader reader = new StreamReader(_fileName))
+                using (StreamReader reader = new(_fileName))
                 {
                     string json = reader.ReadToEnd();
 

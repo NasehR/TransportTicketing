@@ -23,11 +23,11 @@ namespace TransportTicketing.View.FileReading
 
         public Dictionary<string, TransportClient> ReadTransportsFromCSV()
         {
-            Dictionary<string, TransportClient> transports = new Dictionary<string, TransportClient>();
+            Dictionary<string, TransportClient> transports = new();
 
             try
             {
-                using (StreamReader reader = new StreamReader(_fileName))
+                using (StreamReader reader = new(_fileName))
                 {
                     string? line;
                     TransportFactory transport;

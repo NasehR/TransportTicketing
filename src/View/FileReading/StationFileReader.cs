@@ -21,7 +21,7 @@ namespace TransportTicketing.View.FileReading
 
             try
             {
-                using (StreamReader reader = new StreamReader(_fileName))
+                using (StreamReader reader = new(_fileName))
                 {
                     string? line;
                     Station station;

@@ -93,7 +93,7 @@ namespace TransportTicketing.Model.PassengerModel
         /// <param name="entryTime"></param>
         public void EnterTransport(int ticketNumber, TransportClient transportMode)
         {
-            Ticket ticket = new Ticket(ticketNumber, transportMode, this);
+            Ticket ticket = new(ticketNumber, transportMode, this);
             MyTickets.AddLast(ticket);
             On();
         }
