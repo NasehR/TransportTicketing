@@ -18,7 +18,7 @@ namespace TransportTicketing.Controller.TransportController
             {
                 "bus" => new Bus(),
                 "train" => new Train(),
-                _ => throw new ArgumentException("Invalid transportation mode."),
+                _ => throw new TransportExceptions($"{_transportationMode} is an invalid form of transport"),
             };
         }
     }

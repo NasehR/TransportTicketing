@@ -53,8 +53,7 @@ namespace TransportTicketing.Controller.TransportController
                     _transport.Cancelled();
                     break;
                 default:
-                    Console.WriteLine("Invalid standing. Please enter 'ontime', 'delayed', or 'cancelled'.");
-                    break;
+                    throw new TransportExceptions($"{status} as a status does not exits");
             }
         }
 

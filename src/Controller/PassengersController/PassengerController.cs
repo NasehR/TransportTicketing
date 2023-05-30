@@ -52,8 +52,7 @@ namespace TransportTicketing.Controller.PassengersController
                     _passenger.Cancel();
                     break;
                 default:
-                    Console.WriteLine("Invalid standing. Please enter 'good', 'debt', or 'cancel'.");
-                    break;
+                    throw new PassengerExceptions($"{standing} as a standing does not exits");
             }
         }
 
@@ -68,8 +67,7 @@ namespace TransportTicketing.Controller.PassengersController
                     _passenger.Off();
                     break;
                 default:
-                    Console.WriteLine("Invalid standing. Please enter 'good', 'debt', or 'cancel'.");
-                    break;
+                    throw new PassengerExceptions($"{status} as a status does not exits");
             }
         }
 
