@@ -84,9 +84,6 @@ namespace TransportTicketing
 
                     PassengerFileReader pFR = new PassengerFileReader(passengerFileName);
                     Passengers = pFR.ReadPassengersFromJSON();
-
-
-                    Passengers["001"].PrintPassengerDetails();
                 }
             }
             catch (Exception ex)
