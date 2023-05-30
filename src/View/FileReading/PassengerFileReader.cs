@@ -24,7 +24,6 @@ namespace TransportTicketing.View.FileReading
 
         public Dictionary<string, PassengerController> ReadPassengersFromJSON()
         {
-            List<PassengerController> passengers;
             Dictionary<string, PassengerController> passengerDictionary = new();
 
             try

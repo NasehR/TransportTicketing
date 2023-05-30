@@ -1,3 +1,3 @@
-[INFO] 30/05/2023 11:06:29 PM : Stations successfully read from the CSV file.
-[INFO] 30/05/2023 11:06:29 PM : Transports successfully read from the CSV file.
-[ERROR] 30/05/2023 11:06:29 PM : System.IO.FileNotFoundException -> File not found: passenger.json
+[INFO] 31/05/2023 12:22:47 AM : Stations successfully read from the CSV file.
+[INFO] 31/05/2023 12:22:47 AM : Transports successfully read from the CSV file.
+[INFO] 31/05/2023 12:22:47 AM : Passengers successfully read from the JSON file.
