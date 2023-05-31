@@ -47,7 +47,7 @@ namespace TransportTicketing.Controller
 
         public void Run(int user) 
         {
-            Options[user].Run();
+            Options[user].Run(Transports, Passengers, Tickets);
         }
     }
 }

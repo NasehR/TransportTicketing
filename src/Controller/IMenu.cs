@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TransportTicketing.Controller.PassengersController;
+using TransportTicketing.Controller.TransportController;
+using TransportTicketing.View;
 
 namespace TransportTicketing.Controller
 {
@@ -10,7 +13,7 @@ namespace TransportTicketing.Controller
     {
         public void Statement();
 
-        public void Run();
+        public void Run(Dictionary<string, TransportClient> transports, Dictionary<string, PassengerController> passengers, Dictionary<string, Ticket> tickets);
     }
 
     public class TransportOperation: IMenu
@@ -20,7 +23,7 @@ namespace TransportTicketing.Controller
             Console.WriteLine("Transport Operation");
         }
 
-        public void Run()
+        public void Run(Dictionary<string, TransportClient> transports, Dictionary<string, PassengerController> passengers, Dictionary<string, Ticket> tickets)
         {
             Console.WriteLine("Transport Operation are to be done here.");
         }
@@ -33,7 +36,7 @@ namespace TransportTicketing.Controller
             Console.WriteLine("Passenger Operation");
         }
 
-        public void Run()
+        public void Run(Dictionary<string, TransportClient> transports, Dictionary<string, PassengerController> passengers, Dictionary<string, Ticket> tickets)
         {
             Console.WriteLine("Passenger Operation are to be done here.");
         }
@@ -46,7 +49,7 @@ namespace TransportTicketing.Controller
             Console.WriteLine("Exitting...");
         }
 
-        public void Run()
+        public void Run(Dictionary<string, TransportClient> transports, Dictionary<string, PassengerController> passengers, Dictionary<string, Ticket> tickets)
         {
             Environment.Exit(0);
         }
