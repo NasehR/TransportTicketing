@@ -169,10 +169,7 @@ namespace TransportTicketing.Model.PassengerModel
         /// </summary>
         public void Debt()
         {
-            if (_passenger.GetCurrentStanding().Equals(ToString()))
-            {
-                _passenger.SetStanding(new DebtState(_passenger));
-            }
+            throw new PassengerStateExceptions("Passenger can not go from cancelled to debt");
         }
 
         /// <summary>
