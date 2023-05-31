@@ -14,9 +14,9 @@ namespace TransportTicketing.View
     public class UserInterface
     {
         public TransportTicketingApp App { get; set; }
-        private ErrorLogger _logger;
+        private readonly ErrorLogger _logger;
 
-        public UserInterface(TransportTicketingApp app, ErrorLogger logger) 
+        public UserInterface(TransportTicketingApp app, ErrorLogger logger)
         {
             App = app;
             _logger = logger;
@@ -42,7 +42,6 @@ namespace TransportTicketing.View
 
                     App.Statement(user);
                     App.Run(user);
-
                 }
                 catch (PassengerExceptions ex)
                 {
