@@ -9,6 +9,7 @@ namespace TransportTicketing.Controller
     public interface IMenu
     {
         public void Statement();
+
         public void Run();
     }
 

@@ -27,9 +27,6 @@ namespace TransportTicketing
             }
 
             Dictionary<string, PassengerController> Passengers;
-#pragma warning disable CS0168 // Variable is declared but never used
-            Dictionary<string, Ticket> Tickets;
-#pragma warning restore CS0168 // Variable is declared but never used
             Dictionary<string, TransportClient> Transports;
             List<Station> Stations;
             ErrorLogger Logger = new(ErrorFilePath);
