@@ -6,16 +6,29 @@
 namespace TransportTicketing.Model.PassengerModel
 {
     /// <summary>
-    /// Interface to toggle between difference states
+    /// Represents an interface for managing standing passengers.
     /// </summary>
     public interface IPassengerStanding
     {
+        /// <summary>
+        /// Returns a string representation of the object.
+        /// </summary>
+        /// <returns>A string representation of the object.</returns>
         string ToString();
 
+        /// <summary>
+        /// Performs an action to indicate the passenger is in good standing.
+        /// </summary>
         void Good();
 
+        /// <summary>
+        /// Performs an action to indicate the passenger has a debt.
+        /// </summary>
         void Debt();
 
+        /// <summary>
+        /// Performs an action to cancel the passenger's standing status.
+        /// </summary>
         void Cancel();
     }
 
@@ -27,33 +40,34 @@ namespace TransportTicketing.Model.PassengerModel
         protected Passenger _passenger;
 
         /// <summary>
-        /// Constructor to initalise the GoodStandingState.
+        /// Initializes a new instance of the GoodStandingState class.
         /// </summary>
-        /// <param name="passenger"></param>
+        /// <param name="passenger">The passenger associated with this state.</param>
         public GoodStandingState(Passenger passenger)
         {
             _passenger = passenger;
         }
 
         /// <summary>
-        /// Printing the standing
+        /// Returns a string representation of the standing (Good Standing).
         /// </summary>
-        /// <returns>Good Standing</returns>
+        /// <returns>A string representing the standing.</returns>
         public override string ToString()
         {
             return "Good Standing";
         }
 
         /// <summary>
-        /// Transition to good standing state
+        /// Throws an exception indicating that the passenger already has good standing.
         /// </summary>
+        /// <exception cref="PassengerStateExceptions"></exception>
         public void Good()
         {
             throw new PassengerStateExceptions("Passenger has good standing");
         }
 
         /// <summary>
-        /// Transition to debt state
+        /// Transitions the passenger to the debt state if the current standing is good standing.
         /// </summary>
         public void Debt()
         {
@@ -64,7 +78,7 @@ namespace TransportTicketing.Model.PassengerModel
         }
 
         /// <summary>
-        /// Transition to cancel state
+        /// Transitions the passenger to the cancel state if the current standing is good standing.
         /// </summary>
         public void Cancel()
         {
@@ -76,32 +90,33 @@ namespace TransportTicketing.Model.PassengerModel
     }
 
     /// <summary>
-    /// Represents the state of a passenger in debt.
+    /// Represents a state where a passenger is in debt.
+    /// Implements the IPassengerStanding interface.
     /// </summary>
     public class DebtState : IPassengerStanding
     {
         protected Passenger _passenger;
 
         /// <summary>
-        /// Constructor to initalise the DebtState.
+        /// Initializes a new instance of the DebtState class with the specified passenger.
         /// </summary>
-        /// <param name="passenger"></param>
+        /// <param name="passenger">The passenger associated with this state.</param>
         public DebtState(Passenger passenger)
         {
             _passenger = passenger;
         }
 
         /// <summary>
-        /// Printing the standing
+        /// Returns a string representation of the DebtState object.
         /// </summary>
-        /// <returns>In Debt</returns>
+        /// <returns>A string indicating that the passenger is in debt.</returns>
         public override string ToString()
         {
             return "In Debt";
         }
 
         /// <summary>
-        /// Transition to good standing state
+        /// Changes the passenger's standing to GoodStandingState if the current standing is "In Debt".
         /// </summary>
         public void Good()
         {
@@ -112,15 +127,16 @@ namespace TransportTicketing.Model.PassengerModel
         }
 
         /// <summary>
-        /// Transition to debt state
+        /// Throws a PassengerStateException with the message "Passenger is in debt".
         /// </summary>
+        /// <exception cref="PassengerStateExceptions"></exception>
         public void Debt()
         {
             throw new PassengerStateExceptions("Passenger is in debt");
         }
 
         /// <summary>
-        /// Transition to cancel state
+        /// Changes the passenger's standing to CancelState if the current standing is "In Debt".
         /// </summary>
         public void Cancel()
         {
@@ -132,49 +148,53 @@ namespace TransportTicketing.Model.PassengerModel
     }
 
     /// <summary>
-    /// Represents the state of a cancelled passenger.
+    /// Represents the state of a passenger who has been cancelled.
+    /// Implements the IPassengerStanding interface.
     /// </summary>
     public class CancelState : IPassengerStanding
     {
         protected Passenger _passenger;
 
         /// <summary>
-        /// Constructor to initalise the GoodStandingState.
+        /// Initializes a new instance of the CancelState class with the specified passenger.
         /// </summary>
-        /// <param name="passenger"></param>
+        /// <param name="passenger">The passenger associated with this state.</param>
         public CancelState(Passenger passenger)
         {
             _passenger = passenger;
         }
 
         /// <summary>
-        /// Printing the standing
+        /// Returns a string representation of the CancelState object.
         /// </summary>
-        /// <returns>Cancelled</returns>
+        /// <returns>A string representation of the CancelState object.</returns>
         public override string ToString()
         {
             return "Cancelled";
         }
 
         /// <summary>
-        /// Transition to good standing state
+        /// Throws a PassengerStateExceptions indicating that a passenger cannot transition from cancelled to good standing.
         /// </summary>
+        /// <exception cref="PassengerStateExceptions"></exception>
         public void Good()
         {
             throw new PassengerStateExceptions("Passenger can not go from cancelled to good standing");
         }
 
         /// <summary>
-        /// Transition to debt state
+        /// Throws a PassengerStateExceptions indicating that a passenger cannot transition from cancelled to debt.
         /// </summary>
+        /// <exception cref="PassengerStateExceptions"></exception>
         public void Debt()
         {
             throw new PassengerStateExceptions("Passenger can not go from cancelled to debt");
         }
 
         /// <summary>
-        /// Transition to cancel state
+        /// Throws a PassengerStateExceptions indicating that the passenger is already cancelled.
         /// </summary>
+        /// <exception cref="PassengerStateExceptions"></exception>
         public void Cancel()
         {
             throw new PassengerStateExceptions("Passenger is cancelled");

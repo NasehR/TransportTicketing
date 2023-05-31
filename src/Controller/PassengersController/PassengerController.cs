@@ -38,6 +38,7 @@ namespace TransportTicketing.Controller.PassengersController
         /// Update the passenger standing through the input
         /// </summary>
         /// <param name="standing"></param>
+        /// <exception cref="PassengerExceptions"></exception>
         public void UpdatePassengerStanding(string standing)
         {
             switch (standing.ToLower())
@@ -59,6 +60,11 @@ namespace TransportTicketing.Controller.PassengersController
             }
         }
 
+        /// <summary>
+        /// Update the passenger status through the input
+        /// </summary>
+        /// <param name="status"></param>
+        /// <exception cref="PassengerExceptions"></exception>
         public void UpdatePassengerStatus(string status)
         {
             switch (status.ToLower())
@@ -77,7 +83,7 @@ namespace TransportTicketing.Controller.PassengersController
         }
 
         /// <summary>
-        /// Method to printout the details of the passenger
+        /// Method to print out the details of the passenger
         /// </summary>
         public void PrintPassengerDetails()
         {
@@ -104,16 +110,27 @@ namespace TransportTicketing.Controller.PassengersController
             transportMode.RemovePassenger(this);
         }
 
+        /// <summary>
+        /// Get the current status of the passenger.
+        /// </summary>
+        /// <returns>The current status of the passenger</returns>
         public string GetCurrentStatus()
         {
             return _passenger.GetCurrentStatus();
         }
 
+        /// <summary>
+        /// Get the current standing of the passenger.
+        /// </summary>
+        /// <returns>The current standing of the passenger</returns>
         public string GetCurrentStanding()
         {
             return _passenger.GetCurrentStanding();
         }
 
+        /// <summary>
+        /// Notify the passenger.
+        /// </summary>
         public void NotifyPassenger()
         {
             _passenger.Notify();

@@ -11,22 +11,49 @@ using TransportTicketing.View;
 
 namespace TransportTicketing.Controller
 {
+    /// <summary>
+    /// Interface representing a menu with common menu functionality.
+    /// </summary>
     public interface IMenu
     {
+        /// <summary>
+        /// Displays a statement or message related to the menu.
+        /// </summary>
         public void Statement();
 
+        /// <summary>
+        /// Runs the menu by performing operations using the provided dictionaries of transports, passengers, and tickets.
+        /// </summary>
+        /// <param name="transports">Dictionary of transport clients.</param>
+        /// <param name="passengers">Dictionary of passenger controllers.</param>
+        /// <param name="tickets">Dictionary of tickets.</param>
         public void Run(Dictionary<string, TransportClient> transports, Dictionary<string, PassengerController> passengers, Dictionary<string, Ticket> tickets);
 
+        /// <summary>
+        /// Displays the available options for the menu.
+        /// </summary>
         public void Options();
     }
 
-    public class TransportOperation: IMenu
+    /// <summary>
+    /// Represents a class for performing transport operations and implementing the IMenu interface.
+    /// </summary>
+    public class TransportOperation : IMenu
     {
+        /// <summary>
+        /// Prints the statement for Transport Operation.
+        /// </summary>
         public void Statement()
         {
             Console.WriteLine("Transport Operation");
         }
 
+        /// <summary>
+        /// Runs the transport operation menu.
+        /// </summary>
+        /// <param name="transports">Dictionary of transport clients.</param>
+        /// <param name="passengers">Dictionary of passenger controllers.</param>
+        /// <param name="tickets">Dictionary of tickets.</param>
         public void Run(Dictionary<string, TransportClient> transports, Dictionary<string, PassengerController> passengers, Dictionary<string, Ticket> tickets)
         {
             string userString;
@@ -111,19 +138,33 @@ namespace TransportTicketing.Controller
             } while (user != 0);
         }
 
+        /// <summary>
+        /// Prints the available options for the transport operation.
+        /// </summary>
         public void Options()
         {
             Console.WriteLine("\t1)\tGet Number of Stations\n\t2)\tGet Number of Passengers \n\t3)\tAdd a Station\n\t4)\tUpdate Transport Status\n\t5)\tGet Current Passengers\n\t0)\tExit\n");
         }
     }
 
+    /// <summary>
+    /// This class represents the passenger operations menu.
+    /// </summary>
     public class PassengerOperation : IMenu
     {
+        /// <summary>
+        /// Displays the statement for the passenger operation menu.
+        /// </summary>
         public void Statement()
         {
             Console.WriteLine("Passenger Operation");
         }
 
+        /// <summary>
+        /// Runs the passenger operation menu.
+        /// </summary>
+        /// <param name="transports">Dictionary of transport clients.</param>
+        /// <param name="passengers">Dictionary of passenger controllers.</param>
         public void Run(Dictionary<string, TransportClient> transports, Dictionary<string, PassengerController> passengers, Dictionary<string, Ticket> tickets)
         {
             string userString;
@@ -209,24 +250,43 @@ namespace TransportTicketing.Controller
             } while (user != 0);
         }
 
+        /// <summary>
+        /// Displays the options for the passenger operation menu.
+        /// </summary>
+
         public void Options()
         {
             Console.WriteLine("\t1)\tChange Passenger Standing\n\t2)\tPrint Passenger Details\n\t3)\tBoard a Transport\n\t4)\tLeave a Transport\n\t5)\tCreate a New Passenger\n\t0)\tExit\n");
         }
     }
 
+    /// <summary>
+    /// Represents the Quit class which implements the IMenu interface.
+    /// </summary>
     public class Quit : IMenu
     {
+        /// <summary>
+        /// Prints the statement "Exiting..." to the console.
+        /// </summary>
         public void Statement()
         {
             Console.WriteLine("Exiting...");
         }
 
+        /// <summary>
+        /// Exits the program by calling the Environment.Exit method with code 0.
+        /// </summary>
+        /// <param name="transports">A dictionary of transport clients.</param>
+        /// <param name="passengers">A dictionary of passenger controllers.</param>
+        /// <param name="tickets">A dictionary of tickets.</param>
         public void Run(Dictionary<string, TransportClient> transports, Dictionary<string, PassengerController> passengers, Dictionary<string, Ticket> tickets)
         {
             Environment.Exit(0);
         }
 
+        /// <summary>
+        /// Prints an empty line to the console.
+        /// </summary>
         public void Options()
         {
             Console.WriteLine("");

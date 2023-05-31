@@ -3,37 +3,47 @@
 namespace TransportTicketing.Model.PassengerModel
 {
     /// <summary>
-    /// Interface to toggle between different statuses of a passenger.
+    /// Represents an interface for passenger status.
     /// </summary>
     public interface IPassengerStatus
     {
+        /// <summary>
+        /// Returns a string representation of the passenger status.
+        /// </summary>
+        /// <returns>A string representation of the passenger status.</returns>
         string ToString();
 
+        /// <summary>
+        /// Turns on the passenger status.
+        /// </summary>
         void On();
 
+        /// <summary>
+        /// Turns off the passenger status.
+        /// </summary>
         void Off();
     }
 
     /// <summary>
-    /// Represents the status of a passenger on transport.
+    /// Represents the status of a passenger being on a transport.
     /// </summary>
     public class OnTransport : IPassengerStatus
     {
         protected Passenger _passenger;
 
         /// <summary>
-        /// Constructor to initialize the OnTransport status.
+        /// Initializes a new instance of the OnTransport class with the specified passenger.
         /// </summary>
-        /// <param name="passenger">The passenger associated with this status.</param>
+        /// <param name="passenger">The passenger.</param>
         public OnTransport(Passenger passenger)
         {
             _passenger = passenger;
         }
 
         /// <summary>
-        /// Returns the current status of the passenger.
+        /// Returns a string representation of the OnTransport object.
         /// </summary>
-        /// <returns>On Transport</returns>
+        /// <returns>The string "On Transport".</returns>
         public override string ToString()
         {
             // On bus/train name
@@ -42,15 +52,16 @@ namespace TransportTicketing.Model.PassengerModel
         }
 
         /// <summary>
-        /// Transition to the "on transport" status.
+        /// Throws an exception indicating that the passenger is already on a transport.
         /// </summary>
+        /// <exception cref="PassengerStateExceptions">Thrown when the passenger is already on a transport.</exception>
         public void On()
         {
             throw new PassengerStateExceptions("The Passenger is already on a transport");
         }
 
         /// <summary>
-        /// Transition to the "off transport" status.
+        /// Changes the passenger's status to OffTransport if the current status is "On Transport".
         /// </summary>
         public void Off()
         {
@@ -62,14 +73,14 @@ namespace TransportTicketing.Model.PassengerModel
     }
 
     /// <summary>
-    /// Represents the status of a passenger off transport.
+    /// Represents the status of a passenger being off transport.
     /// </summary>
     public class OffTransport : IPassengerStatus
     {
         protected Passenger _passenger;
 
         /// <summary>
-        /// Constructor to initialize the OffTransport status.
+        /// Initializes a new instance of the OffTransport class with the specified passenger.
         /// </summary>
         /// <param name="passenger">The passenger associated with this status.</param>
         public OffTransport(Passenger passenger)
@@ -78,16 +89,16 @@ namespace TransportTicketing.Model.PassengerModel
         }
 
         /// <summary>
-        /// Returns the current status of the passenger.
+        /// Returns a string representation of the OffTransport status.
         /// </summary>
-        /// <returns>Off Transport</returns>
+        /// <returns>A string representing the OffTransport status.</returns>
         public override string ToString()
         {
             return "Off Transport";
         }
 
         /// <summary>
-        /// Transition to the "on transport" status.
+        /// Changes the passenger's status to OnTransport if the current status is OffTransport.
         /// </summary>
         public void On()
         {
@@ -98,8 +109,9 @@ namespace TransportTicketing.Model.PassengerModel
         }
 
         /// <summary>
-        /// Transition to the "off transport" status.
+        /// Throws a PassengerStateExceptions if called, as the passenger is already off transport.
         /// </summary>
+        /// <exception cref="PassengerStateExceptions">Thrown when the passenger is already off transport.</exception>
         public void Off()
         {
             throw new PassengerStateExceptions("Passenger is already off transport");
