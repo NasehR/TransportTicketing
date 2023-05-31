@@ -8,6 +8,7 @@ using TransportTicketing.View.FileReading;
 using System.Globalization;
 using TransportTicketing.Model.PassengerModel;
 using TransportTicketing.Model.TransportModel;
+using TransportTicketing.Controller;
 
 namespace TransportTicketing
 {
@@ -32,78 +33,49 @@ namespace TransportTicketing
             Dictionary<string, TransportClient> Transports;
             List<Station> Stations;
             ErrorLogger Logger = new(ErrorFilePath);
+            TransportTicketingApp app;
+            UserInterface ui;
 
             if (args.Length == 2)
             {
-                try
-                {
-                    stationFileName = Path.GetFullPath(args[0]);
-                    transportFileName = Path.GetFullPath(args[1]);
+                stationFileName = Path.GetFullPath(args[0]);
+                transportFileName = Path.GetFullPath(args[1]);
 
-                    StationFileReader sFR = new(stationFileName, Logger);
-                    Stations = sFR.ReadStationsFromCSV();
+                StationFileReader sFR = new(stationFileName, Logger);
+                Stations = sFR.ReadStationsFromCSV();
 
-                    TransportFileReader tFR = new(transportFileName, Stations, Logger);
-                    Transports = tFR.ReadTransportsFromCSV();
-                }
-                catch (PassengerExceptions ex)
-                {
-                    Logger.LogError(ex, $"{ex.Message}");
-                }
-                catch (TransportExceptions ex)
-                {
-                    Logger.LogError(ex, $"{ex.Message}");
-                }
-                catch (PassengerStateExceptions ex)
-                {
-                    Logger.LogError(ex, $"{ex.Message}");
-                }
-                catch (TransportStateExceptions ex)
-                {
-                    Logger.LogError(ex, $"{ex.Message}");
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogError(ex, $"{ex.Message}");
-                }
+                TransportFileReader tFR = new(transportFileName, Stations, Logger);
+                Transports = tFR.ReadTransportsFromCSV();
+
+                app = new TransportTicketingApp(Transports);
+                ui = new UserInterface(app, Logger);
+
+                ui.Menu();
             }
             else if (args.Length == 3)
             {
-                try
-                {
-                    stationFileName = Path.GetFullPath(args[0]);
-                    transportFileName = Path.GetFullPath(args[1]);
-                    passengerFileName = Path.GetFullPath(args[2]);
+                stationFileName = Path.GetFullPath(args[0]);
+                transportFileName = Path.GetFullPath(args[1]);
+                passengerFileName = Path.GetFullPath(args[2]);
 
-                    StationFileReader sFR = new(stationFileName, Logger);
-                    Stations = sFR.ReadStationsFromCSV();
+                StationFileReader sFR = new(stationFileName, Logger);
+                Stations = sFR.ReadStationsFromCSV();
 
-                    TransportFileReader tFR = new(transportFileName, Stations, Logger);
-                    Transports = tFR.ReadTransportsFromCSV();
+                TransportFileReader tFR = new(transportFileName, Stations, Logger);
+                Transports = tFR.ReadTransportsFromCSV();
 
-                    PassengerFileReader pFR = new(passengerFileName, Logger);
-                    Passengers = pFR.ReadPassengersFromJSON();
-                }
-                catch (PassengerExceptions ex)
-                {
-                    Logger.LogError(ex, $"{ex.Message}");
-                }
-                catch (TransportExceptions ex)
-                {
-                    Logger.LogError(ex, $"{ex.Message}");
-                }
-                catch (PassengerStateExceptions ex)
-                {
-                    Logger.LogError(ex, $"{ex.Message}");
-                }
-                catch (TransportStateExceptions ex)
-                {
-                    Logger.LogError(ex, $"{ex.Message}");
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogError(ex, $"{ex.Message}");
-                }
+                PassengerFileReader pFR = new(passengerFileName, Logger);
+                Passengers = pFR.ReadPassengersFromJSON();
+
+                app = new TransportTicketingApp(Transports, Passengers);
+                ui = new UserInterface(app, Logger);
+
+                ui.Menu();   
+            }
+
+            else
+            {
+                Console.WriteLine("Incorrect number of arguements were provided.");
             }
         }
     }
