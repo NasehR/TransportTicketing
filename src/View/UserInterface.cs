@@ -33,7 +33,7 @@ namespace TransportTicketing.View
                 {
                     Console.WriteLine("1)\tTransport Operations");
                     Console.WriteLine("2)\tPassenger Operations");
-                    Console.WriteLine("3)\tExit");
+                    Console.WriteLine("0)\tExit");
 
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                     userString = Console.ReadLine();
@@ -68,7 +68,7 @@ namespace TransportTicketing.View
                 {
                     _logger.LogError(ex, $"{ex.Message}");
                 }
-            } while (user != 3);
+            } while (user != 0);
         }
     }
 }

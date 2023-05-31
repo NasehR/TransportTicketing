@@ -30,7 +30,7 @@ namespace TransportTicketing.Controller
         public void Run(Dictionary<string, TransportClient> transports, Dictionary<string, PassengerController> passengers, Dictionary<string, Ticket> tickets)
         {
             string userString;
-            int user = 1;
+            int user;
             do
             {
                 Options();
@@ -38,25 +38,55 @@ namespace TransportTicketing.Controller
                 userString = Console.ReadLine();
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
                 user = Convert.ToInt32(userString);
+                string transportName;
                 switch (user)
                 {
                     case 1:
-                        Console.WriteLine("1");
+                        Console.Write("Name of the transport of whose number of stations you want: ");
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                        transportName = Console.ReadLine();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8604 // Possible null reference argument.
+                        Console.WriteLine($"Transport {transportName} has {transports[transportName].GetNumberOfStations()} stations in its route.");
+#pragma warning restore CS8604 // Possible null reference argument.
                         break;
 
                     case 2:
-                        Console.WriteLine("2");
+                        Console.Write("Name of the transport of whose number of passengers you want: ");
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                        transportName = Console.ReadLine();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8604 // Possible null reference argument.
+                        Console.WriteLine($"Transport {transportName} has {transports[transportName].GetCurrentPassengers()} passengers in it currently.");
+#pragma warning restore CS8604 // Possible null reference argument.
                         break;
 
                     case 3:
-                        Console.WriteLine("3");
+                        Console.Write("Name of the transport which is getting a new station added to its route: ");
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                        transportName = Console.ReadLine();
+                        Console.Write("Name of the station: ");
+                        string stationName = Console.ReadLine();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8604 // Possible null reference argument.
+                        Station station = new(stationName);
+                        transports[transportName].AddStation(station);
+#pragma warning restore CS8604 // Possible null reference argument.
                         break;
 
                     case 4:
-                        Console.WriteLine("4");
+                        Console.Write("Name of the transport which you are updating the status of: ");
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                        transportName = Console.ReadLine();
+                        Console.Write("What is the new status of the transport: ");
+                        string newStatus = Console.ReadLine();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8604 // Possible null reference argument.
+                        transports[transportName].UpdateTransportStatus(newStatus);
+#pragma warning restore CS8604 // Possible null reference argument.
                         break;
 
-                    default: 
+                    default:
                         throw new IOException("Entered number is out of range");
                 }
             } while (user != 0);
@@ -64,7 +94,7 @@ namespace TransportTicketing.Controller
 
         public void Options()
         {
-            Console.WriteLine("1)\t" + "2)\t" + "3)\t" + "4)\t" + "0)\t");
+            Console.WriteLine("\t1)\tGet Number of Stations\n\t2)\tGet Number of Passengers \n\t3)\tAdd a Station\n\t4)\tUpdate Transport Status\n\t5)\tGet Current Passengers\n\t0)\tExit\n");
         }
     }
 
@@ -78,7 +108,7 @@ namespace TransportTicketing.Controller
         public void Run(Dictionary<string, TransportClient> transports, Dictionary<string, PassengerController> passengers, Dictionary<string, Ticket> tickets)
         {
             string userString;
-            int user = 1;
+            int user;
             do
             {
                 Options();
@@ -86,7 +116,7 @@ namespace TransportTicketing.Controller
                 userString = Console.ReadLine();
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
                 user = Convert.ToInt32(userString);
-                string id;
+                string? id, transportName;
 
                 switch (user)
                 {
@@ -94,50 +124,60 @@ namespace TransportTicketing.Controller
                         Console.WriteLine("What Passengers Standing do you want to change please enter their id:");
                         id = Console.ReadLine();
                         Console.WriteLine("What do you want their standing to be:");
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                         string standing = Console.ReadLine();
-                        passengers[id].UpdatePassengerStanding(standing);
-                         
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+                        passengers[id!].UpdatePassengerStanding(standing!);
                         break;
 
                     case 2:
                         Console.WriteLine("What passengers details do you want? please enter their id:");
                         id = Console.ReadLine();
-                        passengers[id].PrintPassengerDetails();
+                        passengers[id!].PrintPassengerDetails();
                         break;
 
                     case 3:
-                        Console.WriteLine("What passengers standing do you want? please enter their id:");
+                        Console.Write("What is the passenger id who is boarding: ");
                         id = Console.ReadLine();
-                        passengers[id].GetCurrentStanding();
+                        Console.Write("What transport are they boarding: ");
+                        transportName = Console.ReadLine();
+                        int ticketNumber = tickets.Count + 1;
+                        passengers[id!].Boarding(ticketNumber, transports[transportName!]);
                         break;
 
                     case 4:
-                        Console.WriteLine("What passengers status do you want? please enter their id:");
+                        Console.Write("What is the passenger id who is leaving: ");
                         id = Console.ReadLine();
-                        passengers[id].GetCurrentStatus();
+                        Console.Write("What transport are they leaving: ");
+                        transportName = Console.ReadLine();
+                        passengers[id!].Leaving(transports[transportName!]);
                         break;
 
                     case 5:
                         Console.WriteLine("5");
                         Console.Write("To create a new passenger please enter their id (This needs to be unique): ");
                         id = Console.ReadLine();
-                        
-                        if (passengers.ContainsKey(id))
+
+                        if (passengers.ContainsKey(id!))
                         {
                             throw new Exception($"passenger with id: {id} already exists");
                         }
 
-                        Console.Write("Please enter thier name: ");
+                        Console.Write("Please enter their name: ");
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                         string name = Console.ReadLine();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
-                        Console.Write("Please enter thier biller code: ");
+                        Console.Write("Please enter their biller code: ");
                         int billerCode = Convert.ToInt32(Console.ReadLine());
 
-                        Console.Write("Please enter thier date of birth (DD/MM/YYYY): ");
+                        Console.Write("Please enter their date of birth (DD/MM/YYYY): ");
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                         string dob = Console.ReadLine();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
-                        PassengerController passenger = new PassengerController(id, name, billerCode, dob);
-                        passengers.Add(id, passenger);
+                        PassengerController passenger = new(id!, name!, billerCode, dob!);
+                        passengers.Add(id!, passenger);
                         break;
 
                     default:
@@ -148,7 +188,7 @@ namespace TransportTicketing.Controller
 
         public void Options()
         {
-            Console.WriteLine("\t1)\tChange Passenger Standing\n" + "\t2)\tPrint Passenger Details\n" + "\t3)\tGet Current Standing\n" + "\t4)\tGet Current Status\n" + "\t5)\tCreate a New Passenger\n" + "\t0)\tExit\n");
+            Console.WriteLine("\t1)\tChange Passenger Standing\n\t2)\tPrint Passenger Details\n\t3)\tBoard a Transport\n\t4)\tLeave a Transport\n\t5)\tCreate a New Passenger\n\t0)\tExit\n");
         }
     }
 

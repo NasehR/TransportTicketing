@@ -67,12 +67,11 @@ namespace TransportTicketing
                 app = new TransportTicketingApp(Transports, Passengers);
                 ui = new UserInterface(app, Logger);
 
-                ui.Menu();   
+                ui.Menu();
             }
-
             else
             {
-                Console.WriteLine("Incorrect number of arguements were provided.");
+                Console.WriteLine("Incorrect number of arguments were provided.");
             }
         }
     }
