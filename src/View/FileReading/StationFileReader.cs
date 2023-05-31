@@ -32,9 +32,9 @@ namespace TransportTicketing.View.FileReading
                     {
                         string[] data = line.Split(',');
 
-                        if (data.Length >= 1)
+                        foreach (var item in data)
                         {
-                            string stationName = data[0].Trim();
+                            string stationName = item.Trim();
                             station = new(stationName);
 
                             if (!Stations.Contains(station))

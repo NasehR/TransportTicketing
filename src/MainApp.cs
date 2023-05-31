@@ -64,6 +64,9 @@ namespace TransportTicketing
                 PassengerFileReader pFR = new(passengerFileName, Logger);
                 Passengers = pFR.ReadPassengersFromJSON();
 
+                Console.WriteLine(Stations.Count);
+                Console.WriteLine(Stations[0].Name);
+
                 app = new TransportTicketingApp(Transports, Passengers);
                 ui = new UserInterface(app, Logger);
 

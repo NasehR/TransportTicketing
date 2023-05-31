@@ -44,9 +44,11 @@ namespace TransportTicketing.View.FileReading
 
                             foreach (string stationName in stationNames)
                             {
-                                currentStation = new(stationName.Trim());
+                                Console.WriteLine(stationName.Trim());
+                                currentStation = new(stationName);
+                                transportMode.AddStation(currentStation);
 
-                                if (_stations.Contains(currentStation))
+                                if (_stations.Exists(s => s.Name == stationName))
                                 {
                                     transportMode.AddStation(currentStation);
                                 }
