@@ -60,7 +60,7 @@ namespace TransportTicketing.Model.PassengerModel
             if (_passenger.GetCurrentStanding().Equals(ToString()))
             {
                 Console.WriteLine("Good -> Debt");
-                _passenger.SetState(new DebtState(_passenger));
+                _passenger.SetStanding(new DebtState(_passenger));
             }
         }
 
@@ -72,7 +72,7 @@ namespace TransportTicketing.Model.PassengerModel
             if (_passenger.GetCurrentStanding().Equals(ToString()))
             {
                 Console.WriteLine("Good -> Cancel");
-                _passenger.SetState(new CancelState(_passenger));
+                _passenger.SetStanding(new CancelState(_passenger));
             }
         }
     }
@@ -110,7 +110,7 @@ namespace TransportTicketing.Model.PassengerModel
             if (_passenger.GetCurrentStanding().Equals(ToString()))
             {
                 Console.WriteLine("Debt -> Good");
-                _passenger.SetState(new GoodStandingState(_passenger));
+                _passenger.SetStanding(new GoodStandingState(_passenger));
             }
         }
 
@@ -130,7 +130,7 @@ namespace TransportTicketing.Model.PassengerModel
             if (_passenger.GetCurrentStanding().Equals(ToString()))
             {
                 Console.WriteLine("Debt -> Cancel");
-                _passenger.SetState(new CancelState(_passenger));
+                _passenger.SetStanding(new CancelState(_passenger));
             }
         }
     }
@@ -168,7 +168,7 @@ namespace TransportTicketing.Model.PassengerModel
             if (_passenger.GetCurrentStanding().Equals(ToString()))
             {
                 Console.WriteLine("Cancel -> Good");
-                _passenger.SetState(new GoodStandingState(_passenger));
+                _passenger.SetStanding(new GoodStandingState(_passenger));
             }
         }
 
@@ -180,7 +180,7 @@ namespace TransportTicketing.Model.PassengerModel
             if (_passenger.GetCurrentStanding().Equals(ToString()))
             {
                 Console.WriteLine("Cancel -> Debt");
-                _passenger.SetState(new DebtState(_passenger));
+                _passenger.SetStanding(new DebtState(_passenger));
             }
         }
 

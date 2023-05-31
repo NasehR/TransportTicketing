@@ -35,9 +35,9 @@ namespace TransportTicketing.Model.PassengerModel
                 $"Current Status: \t{GetCurrentStatus()}";
         }
 
-        public void SetState(IPassengerStanding passengerState)
+        public void SetStanding(IPassengerStanding passengerStanding)
         {
-            _currentStanding = passengerState;
+            _currentStanding = passengerStanding;
         }
 
         public void SetStatus(IPassengerStatus passengerStatus)

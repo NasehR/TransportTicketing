@@ -34,9 +34,15 @@ namespace TransportTicketing.View
             _ticketStatus = ticketStatus;
         }
 
-        public string Validity()
+        public bool Validity()
         {
-            return _ticketStatus.ToString();
+            bool isValid = false;
+            if (_ticketStatus.ToString().Equals("Valid"))
+            {
+                isValid = true;
+            }
+
+            return isValid;
         }
 
         public void Valid()

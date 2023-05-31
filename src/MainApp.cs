@@ -13,14 +13,14 @@ namespace TransportTicketing
     {
         public static void Main(string[] args)
         {
-            const string errorFilePath = "ErrorLogs.txt";
+            const string ErrorFilePath = "ErrorLogs.txt";
             string stationFileName;
             string transportFileName;
             string passengerFileName;
 
-            if (File.Exists(errorFilePath))
+            if (File.Exists(ErrorFilePath))
             {
-                File.Delete(errorFilePath);
+                File.Delete(ErrorFilePath);
             }
 
             Dictionary<string, PassengerController> Passengers;
@@ -29,7 +29,7 @@ namespace TransportTicketing
 #pragma warning restore CS0168 // Variable is declared but never used
             Dictionary<string, TransportClient> Transports;
             List<Station> Stations;
-            ErrorLogger Logger = new(errorFilePath);
+            ErrorLogger Logger = new(ErrorFilePath);
 
             if (args.Length == 2)
             {
@@ -65,9 +65,6 @@ namespace TransportTicketing
 
                     PassengerFileReader pFR = new(passengerFileName, Logger);
                     Passengers = pFR.ReadPassengersFromJSON();
-
-                    //Console.WriteLine(Passengers["003"].GetCurrentStanding());
-                    //Console.WriteLine(Passengers["003"].GetCurrentStanding());
                 }
                 catch (PassengerExceptions ex)
                 {

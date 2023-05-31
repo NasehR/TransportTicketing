@@ -38,7 +38,7 @@ namespace TransportTicketing.Model
 
         public void NotValid()
         {
-            if (_ticket.Validity().Equals(ToString()))
+            if (_ticket.Validity())
             {
                 _ticket.SetValidity(new ClosedTicket(_ticket));
             }
@@ -61,7 +61,7 @@ namespace TransportTicketing.Model
 
         public void Valid()
         {
-            if (_ticket.Validity().Equals(ToString()))
+            if (_ticket.Validity())
             {
                 _ticket.SetValidity(new ClosedTicket(_ticket));
             }
