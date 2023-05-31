@@ -41,6 +41,10 @@ namespace TransportTicketing.Controller
                 string transportName;
                 switch (user)
                 {
+                    case 0:
+                        user = 0;
+                        break;
+
                     case 1:
                         Console.Write("Name of the transport of whose number of stations you want: ");
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
@@ -86,6 +90,21 @@ namespace TransportTicketing.Controller
 #pragma warning restore CS8604 // Possible null reference argument.
                         break;
 
+                    case 5:
+                        Console.Write("To get the current passenger what is the transport name: ");
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+                        transportName = Console.ReadLine();
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8604 // Possible null reference argument.
+                        List<PassengerController> currentPassengers = transports[transportName].GetCurrentPassengers();
+#pragma warning restore CS8604 // Possible null reference argument.
+
+                        foreach (var passenger in currentPassengers)
+                        {
+                            passenger.PrintPassengerDetails();
+                        }
+                        break;
+
                     default:
                         throw new IOException("Entered number is out of range");
                 }
@@ -120,6 +139,10 @@ namespace TransportTicketing.Controller
 
                 switch (user)
                 {
+                    case 0:
+                        user = 0;
+                        break;
+
                     case 1:
                         Console.WriteLine("What Passengers Standing do you want to change please enter their id:");
                         id = Console.ReadLine();
