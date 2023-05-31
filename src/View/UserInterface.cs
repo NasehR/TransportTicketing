@@ -11,17 +11,28 @@ using TransportTicketing.Model.TransportModel;
 
 namespace TransportTicketing.View
 {
+    /// <summary>
+    /// Represents the user interface for the transport ticketing application.
+    /// </summary>
     public class UserInterface
     {
         public TransportTicketingApp App { get; set; }
         private readonly ErrorLogger _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the UserInterface class.
+        /// </summary>
+        /// <param name="app">The transport ticketing application.</param>
+        /// <param name="logger">The error logger.</param>
         public UserInterface(TransportTicketingApp app, ErrorLogger logger)
         {
             App = app;
             _logger = logger;
         }
 
+        /// <summary>
+        /// Displays the main menu and handles user input.
+        /// </summary>
         public void Menu()
         {
             Console.WriteLine("Main Method");

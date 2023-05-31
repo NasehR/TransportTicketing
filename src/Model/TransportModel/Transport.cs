@@ -309,7 +309,7 @@ namespace TransportTicketing.Model.TransportModel
         {
             TransportStatus?.OnTime();
         }
-        
+
         /// <summary>
         /// Sets the status of the Bus to Delayed.
         /// </summary>

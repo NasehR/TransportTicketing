@@ -6,17 +6,29 @@ using TransportTicketing.View;
 
 namespace TransportTicketing.View.FileReading
 {
+    /// <summary>
+    /// This class is responsible for reading stations from a CSV file.
+    /// </summary>
     public class StationFileReader
     {
         private readonly string _fileName;
         private readonly ErrorLogger _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the StationFileReader class.
+        /// </summary>
+        /// <param name="fileName">The name of the CSV file to read from</param>
+        /// <param name="logger">The error logger used for logging exceptions</param>
         public StationFileReader(string fileName, ErrorLogger logger)
         {
             _fileName = fileName;
             _logger = logger;
         }
 
+        /// <summary>
+        /// Reads stations from the CSV file and returns a list of Station objects.
+        /// </summary>
+        /// <returns>A list of Station objects</returns>
         public List<Station> ReadStationsFromCSV()
         {
             List<Station> Stations = new();

@@ -11,17 +11,29 @@ using TransportTicketing.Model.PassengerModel;
 
 namespace TransportTicketing.View.FileReading
 {
+    /// <summary>
+    /// This class is responsible for reading passenger data from a JSON file.
+    /// </summary>
     public class PassengerFileReader
     {
         private readonly string _fileName;
         private readonly ErrorLogger _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the PassengerFileReader class with the specified file name and logger.
+        /// </summary>
+        /// <param name="fileName">The name of the JSON file to read from</param>
+        /// <param name="logger">The logger to record any errors encountered</param>
         public PassengerFileReader(string fileName, ErrorLogger logger)
         {
             _fileName = fileName;
             _logger = logger;
         }
 
+        /// <summary>
+        /// Reads the passengers from the JSON file and returns them as a dictionary.
+        /// </summary>
+        /// <returns>A dictionary containing the passengers read from the JSON file</returns>
         public Dictionary<string, PassengerController> ReadPassengersFromJSON()
         {
             Dictionary<string, PassengerController> passengerDictionary = new();

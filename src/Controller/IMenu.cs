@@ -253,7 +253,6 @@ namespace TransportTicketing.Controller
         /// <summary>
         /// Displays the options for the passenger operation menu.
         /// </summary>
-
         public void Options()
         {
             Console.WriteLine("\t1)\tChange Passenger Standing\n\t2)\tPrint Passenger Details\n\t3)\tBoard a Transport\n\t4)\tLeave a Transport\n\t5)\tCreate a New Passenger\n\t0)\tExit\n");

@@ -3,12 +3,21 @@ using TransportTicketing.View;
 
 namespace TransportTicketing.View.FileReading
 {
+    /// <summary>
+    /// The TransportFileReader class reads transports from a CSV file and creates a dictionary of TransportClient objects.
+    /// </summary>
     public class TransportFileReader
     {
         private readonly string _fileName;
         private readonly List<Station> _stations;
         private readonly ErrorLogger _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the TransportFileReader class with the specified file name, list of stations, and error logger.
+        /// </summary>
+        /// <param name="fileName">The name of the CSV file to be read.</param>
+        /// <param name="stations">The list of stations.</param>
+        /// <param name="logger">The error logger.</param>
         public TransportFileReader(string fileName, List<Station> stations, ErrorLogger logger)
         {
             _fileName = fileName;
@@ -16,6 +25,10 @@ namespace TransportTicketing.View.FileReading
             _logger = logger;
         }
 
+        /// <summary>
+        /// Reads transports from the CSV file and returns a dictionary of TransportClient objects.
+        /// </summary>
+        /// <returns>A dictionary of TransportClient objects, where the key is the name of the transport.</returns>
         public Dictionary<string, TransportClient> ReadTransportsFromCSV()
         {
             Dictionary<string, TransportClient> transports = new();
