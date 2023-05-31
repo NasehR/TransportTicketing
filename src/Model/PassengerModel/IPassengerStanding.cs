@@ -49,7 +49,7 @@ namespace TransportTicketing.Model.PassengerModel
         /// </summary>
         public void Good()
         {
-            Console.WriteLine("Passenger has good standing");
+            throw new PassengerStateExceptions("Passenger has good standing");
         }
 
         /// <summary>
@@ -59,7 +59,6 @@ namespace TransportTicketing.Model.PassengerModel
         {
             if (_passenger.GetCurrentStanding().Equals(ToString()))
             {
-                Console.WriteLine("Good -> Debt");
                 _passenger.SetStanding(new DebtState(_passenger));
             }
         }
@@ -71,7 +70,6 @@ namespace TransportTicketing.Model.PassengerModel
         {
             if (_passenger.GetCurrentStanding().Equals(ToString()))
             {
-                Console.WriteLine("Good -> Cancel");
                 _passenger.SetStanding(new CancelState(_passenger));
             }
         }
@@ -109,7 +107,6 @@ namespace TransportTicketing.Model.PassengerModel
         {
             if (_passenger.GetCurrentStanding().Equals(ToString()))
             {
-                Console.WriteLine("Debt -> Good");
                 _passenger.SetStanding(new GoodStandingState(_passenger));
             }
         }
@@ -119,7 +116,7 @@ namespace TransportTicketing.Model.PassengerModel
         /// </summary>
         public void Debt()
         {
-            Console.WriteLine("Passenger is in debt");
+            throw new PassengerStateExceptions("Passenger is in debt");
         }
 
         /// <summary>
@@ -129,7 +126,6 @@ namespace TransportTicketing.Model.PassengerModel
         {
             if (_passenger.GetCurrentStanding().Equals(ToString()))
             {
-                Console.WriteLine("Debt -> Cancel");
                 _passenger.SetStanding(new CancelState(_passenger));
             }
         }
@@ -165,11 +161,7 @@ namespace TransportTicketing.Model.PassengerModel
         /// </summary>
         public void Good()
         {
-            if (_passenger.GetCurrentStanding().Equals(ToString()))
-            {
-                Console.WriteLine("Cancel -> Good");
-                _passenger.SetStanding(new GoodStandingState(_passenger));
-            }
+            throw new PassengerStateExceptions("Passenger can not go from cancelled to good standing");
         }
 
         /// <summary>
@@ -179,7 +171,6 @@ namespace TransportTicketing.Model.PassengerModel
         {
             if (_passenger.GetCurrentStanding().Equals(ToString()))
             {
-                Console.WriteLine("Cancel -> Debt");
                 _passenger.SetStanding(new DebtState(_passenger));
             }
         }
@@ -189,7 +180,7 @@ namespace TransportTicketing.Model.PassengerModel
         /// </summary>
         public void Cancel()
         {
-            Console.WriteLine("Passenger is cancelled");
+            throw new PassengerStateExceptions("Passenger is cancelled");
         }
     }
 }

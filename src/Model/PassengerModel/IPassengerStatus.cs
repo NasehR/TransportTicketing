@@ -46,7 +46,7 @@ namespace TransportTicketing.Model.PassengerModel
         /// </summary>
         public void On()
         {
-            Console.WriteLine("Passenger is already on transport");
+            throw new PassengerStateExceptions("The Passenger is already on a transport");
         }
 
         /// <summary>
@@ -56,7 +56,6 @@ namespace TransportTicketing.Model.PassengerModel
         {
             if (_passenger.GetCurrentStatus().Equals(ToString()))
             {
-                Console.WriteLine("Getting off");
                 _passenger.SetStatus(new OffTransport(_passenger));
             }
         }
@@ -94,7 +93,6 @@ namespace TransportTicketing.Model.PassengerModel
         {
             if (_passenger.GetCurrentStatus().Equals(ToString()))
             {
-                Console.WriteLine("Getting on");
                 _passenger.SetStatus(new OnTransport(_passenger));
             }
         }
@@ -104,7 +102,7 @@ namespace TransportTicketing.Model.PassengerModel
         /// </summary>
         public void Off()
         {
-            Console.WriteLine("Passenger is already off transport");
+            throw new PassengerStateExceptions("Passenger is already off transport");
         }
     }
 }

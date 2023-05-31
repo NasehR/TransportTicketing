@@ -46,7 +46,15 @@ namespace TransportTicketing
                 }
                 catch (PassengerExceptions ex)
                 {
-                    Console.WriteLine($"{ex.Message}");
+                    Logger.LogError(ex, $"{ex.Message}");
+                }
+                catch (TransportExceptions ex)
+                {
+                    Logger.LogError(ex, $"{ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex, $"{ex.Message}");
                 }
             }
             else if (args.Length == 3)
