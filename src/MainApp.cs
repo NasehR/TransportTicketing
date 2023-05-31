@@ -6,6 +6,8 @@ using TransportTicketing.Controller.PassengersController;
 using TransportTicketing.Controller.TransportController;
 using TransportTicketing.View.FileReading;
 using System.Globalization;
+using TransportTicketing.Model.PassengerModel;
+using TransportTicketing.Model.TransportModel;
 
 namespace TransportTicketing
 {
@@ -52,6 +54,14 @@ namespace TransportTicketing
                 {
                     Logger.LogError(ex, $"{ex.Message}");
                 }
+                catch (PassengerStateExceptions ex)
+                {
+                    Logger.LogError(ex, $"{ex.Message}");
+                }
+                catch (TransportStateExceptions ex)
+                {
+                    Logger.LogError(ex, $"{ex.Message}");
+                }
                 catch (Exception ex)
                 {
                     Logger.LogError(ex, $"{ex.Message}");
@@ -79,6 +89,14 @@ namespace TransportTicketing
                     Logger.LogError(ex, $"{ex.Message}");
                 }
                 catch (TransportExceptions ex)
+                {
+                    Logger.LogError(ex, $"{ex.Message}");
+                }
+                catch (PassengerStateExceptions ex)
+                {
+                    Logger.LogError(ex, $"{ex.Message}");
+                }
+                catch (TransportStateExceptions ex)
                 {
                     Logger.LogError(ex, $"{ex.Message}");
                 }

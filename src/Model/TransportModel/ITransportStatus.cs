@@ -27,7 +27,7 @@
 
         public void OnTime()
         {
-            Console.WriteLine("The transport is on time");
+            throw new TransportStateExceptions("The transport is on time");
         }
 
         public void Delayed()
@@ -71,7 +71,7 @@
 
         public void Delayed()
         {
-            Console.WriteLine("The transport is already delayed.");
+            throw new TransportStateExceptions("The transport is already delayed.");
         }
 
         public void Cancelled()
@@ -99,23 +99,17 @@
 
         public void OnTime()
         {
-            if (_transport.GetCurrentStatus().Equals(ToString()))
-            {
-                _transport.SetStatus(new OnTimeState(_transport));
-            }
+            throw new TransportStateExceptions("The transport is cancelled, therefore can not be on time");
         }
 
         public void Delayed()
         {
-            if (_transport.GetCurrentStatus().Equals(ToString()))
-            {
-                _transport.SetStatus(new DelayedState(_transport));
-            }
+            throw new TransportStateExceptions("The transport is cancelled, therefore can not be delayed");
         }
 
         public void Cancelled()
         {
-            Console.WriteLine("The transport is already cancelled");
+            throw new TransportStateExceptions("The transport is already cancelled");
         }
     }
 }
